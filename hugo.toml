@@ -1,0 +1,42 @@
+baseURL = "http://meath.cloud"
+languageCode = "en-us"
+title = "Derrek"
+theme = "hello-friend-ng"
+paginate = 10
+
+[params]
+  dateform        = "Jan 2, 2006"
+  dateformShort   = "Jan 2"
+  dateformNum     = "2006-01-02"
+  defaultTheme    = "dark"
+  description     = "IT Manager"
+  homeSubtitle    = "IT Manager"
+
+[params.logo]
+  logoText     = "~/meathcloud"
+  logoHomeLink = "/"
+
+[[params.social]]
+  name = "github"
+  url  = "https://github.com/ctrigga"
+
+[[params.social]]
+  name = "linkedin"
+  url  = "https://www.linkedin.com/in/derrek-meath-22864051"
+
+[taxonomies]
+  tag      = "tags"
+  category = "blog"
+  series   = "series"
+
+[menu]
+  [[menu.main]]
+    identifier = "about"
+    name       = "About"
+    url        = "/about/"
+    weight     = 10
+  [[menu.main]]
+    identifier = "posts"
+    name       = "Posts"
+    url        = "/posts/"
+    weight     = 20
