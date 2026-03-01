@@ -1,4 +1,4 @@
-baseURL = "http://meath.cloud"
+baseURL = "https://www.meath.cloud"
 languageCode = "en-us"
 title = "Derrek"
 theme = "hello-friend-ng"
