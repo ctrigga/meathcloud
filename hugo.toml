@@ -33,10 +33,10 @@ paginate = 10
   [[menu.main]]
     identifier = "about"
     name       = "About"
-    url        = "/about/"
+    url        = "/about"
     weight     = 10
   [[menu.main]]
     identifier = "posts"
     name       = "Posts"
-    url        = "/posts/"
+    url        = "/posts"
     weight     = 20
