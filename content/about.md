@@ -3,6 +3,7 @@
 title: “About”
 date: 2026-02-28
 draft: false
+---
 
 # Hey, I’m Derrek
 
