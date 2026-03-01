@@ -6,6 +6,21 @@
     <description>Recent content on Derrek</description>
     <generator>Hugo</generator>
     <language>en-us</language>
+    <lastBuildDate>Sat, 28 Feb 2026 20:19:58 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How I Built This Site</title>
+      <link>http://localhost:1313/posts/how-i-built-this-site/</link>
+      <pubDate>Sat, 28 Feb 2026 20:19:58 -0500</pubDate>
+      <guid>http://localhost:1313/posts/how-i-built-this-site/</guid>
+      <description>&lt;p&gt;Hello&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;h1 id=&#34;hey-im-derrek&#34;&gt;Hey, I&amp;rsquo;m Derrek&lt;/h1&gt;&#xA;&lt;p&gt;I&amp;rsquo;m a System Administration Manager at SAIC with over a decade of experience keeping complex infrastructure running — from Navy shipboard IT to enterprise mission systems. I&amp;rsquo;ve spent my career in the deep end of the tech stack, and now I&amp;rsquo;m deliberately pushing into cloud engineering, AI/ML, and data science.&lt;/p&gt;&#xA;&lt;p&gt;This site is where I build in public. Every project, writeup, and lesson learned from that transition lives here.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
