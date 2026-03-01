@@ -1,6 +1,6 @@
 ---
 title: "My First Python Script: Querying Azure Resources"
-date: 2026-02-28
+date: 2026-03-01
 draft: false
 tags: ["python", "azure", "automation", "powershell"]
 ---
