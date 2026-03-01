@@ -1,4 +1,4 @@
------
+---
 
 title: “About”
 date: 2026-02-28
@@ -10,7 +10,7 @@ I’m a System Administration Manager at SAIC with over a decade of experience k
 
 This site is where I build in public. Every project, writeup, and lesson learned from that transition lives here.
 
------
+---
 
 ## Background
 
@@ -18,7 +18,7 @@ I earned my **BA from the University of Iowa** before enlisting in the **U.S. Na
 
 After separating from the Navy, I moved into civilian IT and never looked back. I worked my way through the stack — from hands-on systems administration to managing teams and infrastructure supporting mission-critical government environments at **SAIC**.
 
------
+---
 
 ## What I Work With
 
@@ -30,7 +30,7 @@ Over the years I’ve gotten my hands dirty with a wide range of technologies:
 - **Cloud:** AWS, Microsoft Azure
 - **Mission Systems:** Specialized DoD and enterprise mission-critical environments
 
------
+---
 
 ## Certifications
 
@@ -44,7 +44,7 @@ Over the years I’ve gotten my hands dirty with a wide range of technologies:
 - Certified Scrum Master
 - AI for Scrum
 
------
+---
 
 ## Where I’m Headed
 
@@ -54,6 +54,6 @@ My current focus is developing hands-on skills in **Microsoft Azure**, **Python*
 
 If you’re on a similar path or want to connect, find me on [GitHub](https://github.com/yourusername) or [LinkedIn](https://linkedin.com/in/yourusername).
 
------
+---
 
 *This site is itself a project — built on Hugo, deployed via Azure Static Web Apps, and updated through a GitHub Actions CI/CD pipeline. [Read about how it was built →](/posts/how-i-built-this-site)*
