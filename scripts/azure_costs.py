@@ -1,13 +1,18 @@
 from azure.identity import DefaultAzureCredential
 from azure.mgmt.costmanagement import CostManagementClient
 from datetime import datetime, timedelta
+import argparse
+
+parser = argparse.ArgumentParser(description="Azure Cost Report")
+parser.add_argument("--days", type=int, default=30, help="Number of days to look back for cost data (default: 30)")
+args = parser.parse_args()
 
 credential = DefaultAzureCredential()
 subscription_id = "e64020ae-80db-40fb-b774-3fbafdcf48a0"
 
 # Define the time range for cost data (last 30 days)
 end_date = datetime.now()
-start_date = end_date - timedelta(days=30)
+start_date = end_date - timedelta(days=args.days)
 
 # Format dates the way Azure Cost Management API expects
 start = start_date.strftime("%Y-%m-%dT%H:%M:%SZ")
