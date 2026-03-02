@@ -20,7 +20,7 @@ draft: false
 - Cisco Certified Network Associate (CCNA)
 - Cisco Cyber Ops
 - Certified Scrum Master
-- AI for Scrum
+- AI for Certified Scrum Masters
 - AWS Cloud Practitioner
 - Microsoft Azure Fundamentals (AZ-900)
 

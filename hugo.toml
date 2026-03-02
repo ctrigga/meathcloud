@@ -24,6 +24,10 @@ paginate = 10
   name = "linkedin"
   url  = "https://www.linkedin.com/in/derrek-meath-22864051"
 
+  [[params.social]]
+  name = "email"
+  url  = "mailto:derrek@meath.cloud"
+
 [taxonomies]
   tag      = "tags"
   category = "blog"
