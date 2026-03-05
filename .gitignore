@@ -1,1 +1,3 @@
 public\
+infra/dev-vm/dev-vm.parameters.json
+.venv/
