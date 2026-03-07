@@ -7,7 +7,7 @@ draft: false
 
 # Hey, I’m Derrek
 
-I’m a System Administration Manager at SAIC with over a decade of experience keeping complex infrastructure running — from Navy shipboard IT to enterprise mission systems. I’ve spent my career in the deep end of the tech stack, and now I’m deliberately pushing into cloud engineering, AI/ML, and data science.
+I’m a System Administration Manager at SAIC with over a decade of experience keeping complex infrastructure running — from Navy IT to enterprise mission systems. I’ve spent my career in the tech stack, and now I’m deliberately pushing into cloud engineering, AI/ML, and data science.
 
 This site is where I build in public. Every project, writeup, and lesson learned from that transition lives here.
 

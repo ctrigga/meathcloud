@@ -1,6 +1,6 @@
 ---
 title: "Infrastructure as Code with Bicep: Deploying a Windows 11 Dev VM"
-date: 2026-03-05
+date: 2026-03-04
 draft: false
 tags: ["azure", "bicep", "iac", "windows", "devops"]
 ---
