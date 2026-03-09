@@ -2,6 +2,8 @@ import json
 import urllib.request
 import argparse
 import sys
+import azure.identity
+import azure.storage.blob
 from datetime import datetime, timezone
 
 BASE_URL = "https://api.openf1.org/v1"
