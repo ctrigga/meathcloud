@@ -1,6 +1,6 @@
 ---
 title: "Day 5: Building an F1 Data Pipeline with OpenF1 and Azure"
-date: 2026-03-08
+date: 2026-03-09
 draft: false
 tags: ["azure", "python", "data-engineering", "f1", "github-actions"]
 ---
@@ -30,7 +30,7 @@ session key is `9839` and the data includes 1,156 laps across 20 drivers,
 
 `scripts/f1_etl.py` follows the same pattern as the weather pipeline from Day 4:
 
-- **Extract** — hit the OpenF1 API across four endpoints: `sessions`, `drivers`, 
+- **Extract** — hit the OpenF1 API across five endpoints: `sessions`, `drivers`, 
 `laps`, `stints`, and `weather`
 - **Transform** — light touches only: find the fastest lap, count pit stops per 
 driver, validate session type
@@ -48,6 +48,9 @@ session the script aborts rather than silently ingesting the wrong data
 - **404 handling** — the OpenF1 laps endpoint returns a 404 for sessions that 
 haven't happened yet. The script catches this gracefully and continues with 
 empty arrays rather than crashing
+- **Argument validation** — `--session-key` and `--race-name` must be provided 
+together, and race names are validated against a simple regex to keep blob paths 
+clean
 - **RBAC** — same lesson as Day 4. Deploying a storage account doesn't 
 automatically grant your identity access to it. The `Storage Blob Data 
 Contributor` role assignment is a separate step that catches people out
@@ -60,24 +63,11 @@ figures it out automatically.
 
 It fetches the full 2026 race calendar from OpenF1, calculates 
 `race_start_time + 3.5 hours` for every session, and checks whether any 
-trigger window falls within the current 5-minute window. If it does, it fires 
-the ETL with the correct session key and race name for that event.
+trigger window falls within the current run. If it does, it fires the ETL 
+with the correct session key and race name for that event.
 
 The 3.5 hour offset accounts for a full race distance plus buffer for safety 
-cars, red flags, or a chaotic Melbourne finish. By the time the trigger fires 
-the data is fully available in OpenF1.
-
-Here's the full 2026 schedule as the scheduler sees it:
-```
-Race              Start (UTC)              Trigger (UTC)
-Melbourne         2026-03-08T04:00:00      2026-03-08T07:30:00
-Shanghai          2026-03-14T03:00:00      2026-03-14T06:30:00
-Suzuka            2026-03-29T05:00:00      2026-03-29T08:30:00
-...
-Yas Marina        2026-12-06T13:00:00      2026-12-06T16:30:00
-```
-
-30 races. Zero manual intervention required for the rest of the season.
+cars, red flags, or a chaotic Melbourne finish.
 
 ## GitHub Actions as the Orchestrator
 
@@ -95,9 +85,37 @@ Authentication to Azure uses a service principal stored as a GitHub Actions
 secret (`AZURE_CREDENTIALS`), created with the minimum required scope — 
 `Storage Blob Data Contributor` on the data engineering resource group only.
 
-The first real test is tonight. The 2026 Australian Grand Prix starts at 
-04:00 UTC and the scheduler will fire the ETL at 07:30 UTC automatically. 
-I'll check the blob storage in the morning.
+## Lessons Learned: GitHub Actions Cron Is Not Precise
+
+The first real test was the 2026 Australian Grand Prix. The race started at 
+`04:00 UTC` and the scheduler was set to trigger at `07:30 UTC`. It missed.
+
+The workflow run landed at `07:40 UTC` — 4 minutes late, just outside the 
+original 6-minute trigger window. GitHub Actions cron on the free tier can 
+be anywhere from 1 to 15 minutes late depending on runner availability.
+
+The fix was simple — widen `TRIGGER_WINDOW_MINUTES` from `6` to `20`, giving 
+a 40-minute window total. Wide enough to absorb any runner delay, narrow enough 
+that two back-to-back races could never accidentally overlap.
+
+Melbourne data was recovered manually by running the ETL directly:
+```bash
+python scripts/f1_etl.py --session-key 11234 --race-name melbourne_2026
+```
+
+## First Race of the 2026 Era
+
+The Melbourne data tells an interesting story about the new season. 22 drivers 
+on the grid — Cadillac made their debut with Sergio Perez (#11) and Valtteri 
+Bottas (#77), and Sauber completed their transition to Audi. Verstappen set the 
+fastest lap at 82.091s. Stroll somehow managed 4 pit stops. Hadjar and 
+Hulkenberg both recorded 0 stints suggesting early retirements.
+
+Both races are now sitting in blob storage:
+```
+raw-data/f1/abu_dhabi_2025/race_2026-03-08_00-48-11.json   1,055,018 bytes
+raw-data/f1/melbourne_2026/race_2026-03-09_01-40-40.json     921,658 bytes
+```
 
 ## What's Next
 
