@@ -1,5 +1,225 @@
 [
   {
+    "race": "Melbourne",
+    "year": "2025",
+    "circuit": "Melbourne",
+    "date": "2025-03-16",
+    "slug": "melbourne_2025",
+    "winner": "Lando NORRIS",
+    "winner_team": "McLaren",
+    "fastest_lap": "1:22.167"
+  },
+  {
+    "race": "Shanghai",
+    "year": "2025",
+    "circuit": "Shanghai",
+    "date": "2025-03-23",
+    "slug": "shanghai_2025",
+    "winner": "Oscar PIASTRI",
+    "winner_team": "McLaren",
+    "fastest_lap": "1:35.069"
+  },
+  {
+    "race": "Suzuka",
+    "year": "2025",
+    "circuit": "Suzuka",
+    "date": "2025-04-06",
+    "slug": "suzuka_2025",
+    "winner": "Max VERSTAPPEN",
+    "winner_team": "Red Bull Racing",
+    "fastest_lap": "1:30.965"
+  },
+  {
+    "race": "Sakhir",
+    "year": "2025",
+    "circuit": "Sakhir",
+    "date": "2025-04-13",
+    "slug": "sakhir_2025",
+    "winner": "Oscar PIASTRI",
+    "winner_team": "McLaren",
+    "fastest_lap": "1:35.140"
+  },
+  {
+    "race": "Jeddah",
+    "year": "2025",
+    "circuit": "Jeddah",
+    "date": "2025-04-20",
+    "slug": "jeddah_2025",
+    "winner": "Oscar PIASTRI",
+    "winner_team": "McLaren",
+    "fastest_lap": "1:31.778"
+  },
+  {
+    "race": "Miami Gardens",
+    "year": "2025",
+    "circuit": "Miami",
+    "date": "2025-05-04",
+    "slug": "miami_gardens_2025",
+    "winner": "Oscar PIASTRI",
+    "winner_team": "McLaren",
+    "fastest_lap": "1:29.746"
+  },
+  {
+    "race": "Imola",
+    "year": "2025",
+    "circuit": "Imola",
+    "date": "2025-05-18",
+    "slug": "imola_2025",
+    "winner": "Max VERSTAPPEN",
+    "winner_team": "Red Bull Racing",
+    "fastest_lap": "1:17.988"
+  },
+  {
+    "race": "Monaco",
+    "year": "2025",
+    "circuit": "Monte Carlo",
+    "date": "2025-05-25",
+    "slug": "monaco_2025",
+    "winner": "Lando NORRIS",
+    "winner_team": "McLaren",
+    "fastest_lap": "1:13.221"
+  },
+  {
+    "race": "Barcelona",
+    "year": "2025",
+    "circuit": "Catalunya",
+    "date": "2025-06-01",
+    "slug": "barcelona_2025",
+    "winner": "Oscar PIASTRI",
+    "winner_team": "McLaren",
+    "fastest_lap": "1:15.743"
+  },
+  {
+    "race": "Montr\u00e9al",
+    "year": "2025",
+    "circuit": "Montreal",
+    "date": "2025-06-15",
+    "slug": "montr\u00e9al_2025",
+    "winner": "George RUSSELL",
+    "winner_team": "Mercedes",
+    "fastest_lap": "1:14.119"
+  },
+  {
+    "race": "Spielberg",
+    "year": "2025",
+    "circuit": "Spielberg",
+    "date": "2025-06-29",
+    "slug": "spielberg_2025",
+    "winner": "Lando NORRIS",
+    "winner_team": "McLaren",
+    "fastest_lap": "1:07.924"
+  },
+  {
+    "race": "Silverstone",
+    "year": "2025",
+    "circuit": "Silverstone",
+    "date": "2025-07-06",
+    "slug": "silverstone_2025",
+    "winner": "Lando NORRIS",
+    "winner_team": "McLaren",
+    "fastest_lap": "1:29.337"
+  },
+  {
+    "race": "Budapest",
+    "year": "2025",
+    "circuit": "Hungaroring",
+    "date": "2025-08-03",
+    "slug": "budapest_2025",
+    "winner": "Lando NORRIS",
+    "winner_team": "McLaren",
+    "fastest_lap": "1:19.409"
+  },
+  {
+    "race": "Zandvoort",
+    "year": "2025",
+    "circuit": "Zandvoort",
+    "date": "2025-08-31",
+    "slug": "zandvoort_2025",
+    "winner": "Oscar PIASTRI",
+    "winner_team": "McLaren",
+    "fastest_lap": "1:12.271"
+  },
+  {
+    "race": "Monza",
+    "year": "2025",
+    "circuit": "Monza",
+    "date": "2025-09-07",
+    "slug": "monza_2025",
+    "winner": "Max VERSTAPPEN",
+    "winner_team": "Red Bull Racing",
+    "fastest_lap": "1:20.901"
+  },
+  {
+    "race": "Baku",
+    "year": "2025",
+    "circuit": "Baku",
+    "date": "2025-09-21",
+    "slug": "baku_2025",
+    "winner": "Max VERSTAPPEN",
+    "winner_team": "Red Bull Racing",
+    "fastest_lap": "1:43.388"
+  },
+  {
+    "race": "Marina Bay",
+    "year": "2025",
+    "circuit": "Singapore",
+    "date": "2025-10-05",
+    "slug": "marina_bay_2025",
+    "winner": "George RUSSELL",
+    "winner_team": "Mercedes",
+    "fastest_lap": "1:33.808"
+  },
+  {
+    "race": "Austin",
+    "year": "2025",
+    "circuit": "Austin",
+    "date": "2025-10-19",
+    "slug": "austin_2025",
+    "winner": "Max VERSTAPPEN",
+    "winner_team": "Red Bull Racing",
+    "fastest_lap": "1:37.577"
+  },
+  {
+    "race": "Mexico City",
+    "year": "2025",
+    "circuit": "Mexico City",
+    "date": "2025-10-26",
+    "slug": "mexico_city_2025",
+    "winner": "Lando NORRIS",
+    "winner_team": "McLaren",
+    "fastest_lap": "1:20.052"
+  },
+  {
+    "race": "S\u00e3o Paulo",
+    "year": "2025",
+    "circuit": "Interlagos",
+    "date": "2025-11-09",
+    "slug": "s\u00e3o_paulo_2025",
+    "winner": "Lando NORRIS",
+    "winner_team": "McLaren",
+    "fastest_lap": "1:12.400"
+  },
+  {
+    "race": "Las Vegas",
+    "year": "2025",
+    "circuit": "Las Vegas",
+    "date": "2025-11-23",
+    "slug": "las_vegas_2025",
+    "winner": "Max VERSTAPPEN",
+    "winner_team": "Red Bull Racing",
+    "fastest_lap": "1:33.365"
+  },
+  {
+    "race": "Lusail",
+    "year": "2025",
+    "circuit": "Lusail",
+    "date": "2025-11-30",
+    "slug": "lusail_2025",
+    "winner": "Max VERSTAPPEN",
+    "winner_team": "Red Bull Racing",
+    "fastest_lap": "1:22.996"
+  },
+  {
     "race": "Yas Island",
     "year": "2025",
     "circuit": "Yas Marina Circuit",

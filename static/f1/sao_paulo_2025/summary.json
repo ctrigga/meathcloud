@@ -1,0 +1,763 @@
+{
+  "race": "S\u00e3o Paulo",
+  "year": "2025",
+  "circuit": "Interlagos",
+  "date": "2025-11-09",
+  "results": [
+    {
+      "position": 1,
+      "driver_number": 4,
+      "acronym": "NOR",
+      "full_name": "Lando NORRIS",
+      "team": "McLaren",
+      "laps_completed": 71
+    },
+    {
+      "position": 2,
+      "driver_number": 12,
+      "acronym": "ANT",
+      "full_name": "Kimi ANTONELLI",
+      "team": "Mercedes",
+      "laps_completed": 71
+    },
+    {
+      "position": 3,
+      "driver_number": 1,
+      "acronym": "VER",
+      "full_name": "Max VERSTAPPEN",
+      "team": "Red Bull Racing",
+      "laps_completed": 71
+    },
+    {
+      "position": 4,
+      "driver_number": 63,
+      "acronym": "RUS",
+      "full_name": "George RUSSELL",
+      "team": "Mercedes",
+      "laps_completed": 71
+    },
+    {
+      "position": 5,
+      "driver_number": 81,
+      "acronym": "PIA",
+      "full_name": "Oscar PIASTRI",
+      "team": "McLaren",
+      "laps_completed": 71
+    },
+    {
+      "position": 6,
+      "driver_number": 87,
+      "acronym": "BEA",
+      "full_name": "Oliver BEARMAN",
+      "team": "Haas F1 Team",
+      "laps_completed": 71
+    },
+    {
+      "position": 7,
+      "driver_number": 30,
+      "acronym": "LAW",
+      "full_name": "Liam LAWSON",
+      "team": "Racing Bulls",
+      "laps_completed": 71
+    },
+    {
+      "position": 8,
+      "driver_number": 6,
+      "acronym": "HAD",
+      "full_name": "Isack HADJAR",
+      "team": "Racing Bulls",
+      "laps_completed": 71
+    },
+    {
+      "position": 9,
+      "driver_number": 27,
+      "acronym": "HUL",
+      "full_name": "Nico HULKENBERG",
+      "team": "Kick Sauber",
+      "laps_completed": 71
+    },
+    {
+      "position": 10,
+      "driver_number": 10,
+      "acronym": "GAS",
+      "full_name": "Pierre GASLY",
+      "team": "Alpine",
+      "laps_completed": 71
+    },
+    {
+      "position": 11,
+      "driver_number": 23,
+      "acronym": "ALB",
+      "full_name": "Alexander ALBON",
+      "team": "Williams",
+      "laps_completed": 71
+    },
+    {
+      "position": 12,
+      "driver_number": 31,
+      "acronym": "OCO",
+      "full_name": "Esteban OCON",
+      "team": "Haas F1 Team",
+      "laps_completed": 71
+    },
+    {
+      "position": 13,
+      "driver_number": 55,
+      "acronym": "SAI",
+      "full_name": "Carlos SAINZ",
+      "team": "Williams",
+      "laps_completed": 71
+    },
+    {
+      "position": 14,
+      "driver_number": 14,
+      "acronym": "ALO",
+      "full_name": "Fernando ALONSO",
+      "team": "Aston Martin",
+      "laps_completed": 71
+    },
+    {
+      "position": 15,
+      "driver_number": 43,
+      "acronym": "COL",
+      "full_name": "Franco COLAPINTO",
+      "team": "Alpine",
+      "laps_completed": 71
+    },
+    {
+      "position": 16,
+      "driver_number": 18,
+      "acronym": "STR",
+      "full_name": "Lance STROLL",
+      "team": "Aston Martin",
+      "laps_completed": 71
+    },
+    {
+      "position": 17,
+      "driver_number": 22,
+      "acronym": "TSU",
+      "full_name": "Yuki TSUNODA",
+      "team": "Red Bull Racing",
+      "laps_completed": 71
+    },
+    {
+      "position": 18,
+      "driver_number": 44,
+      "acronym": "HAM",
+      "full_name": "Lewis HAMILTON",
+      "team": "Ferrari",
+      "laps_completed": 38
+    },
+    {
+      "position": 19,
+      "driver_number": 16,
+      "acronym": "LEC",
+      "full_name": "Charles LECLERC",
+      "team": "Ferrari",
+      "laps_completed": 6
+    },
+    {
+      "position": 20,
+      "driver_number": 5,
+      "acronym": "BOR",
+      "full_name": "Gabriel BORTOLETO",
+      "team": "Kick Sauber",
+      "laps_completed": 1
+    }
+  ],
+  "fastest_lap": {
+    "driver_number": 23,
+    "acronym": "ALB",
+    "full_name": "Alexander ALBON",
+    "team": "Williams",
+    "lap_number": 59,
+    "lap_duration": 72.4,
+    "lap_duration_formatted": "1:12.400"
+  },
+  "strategy": [
+    {
+      "driver_number": 1,
+      "acronym": "VER",
+      "team": "Red Bull Racing",
+      "stint_number": 1,
+      "lap_start": 1,
+      "lap_end": 7,
+      "compound": "HARD",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 1,
+      "acronym": "VER",
+      "team": "Red Bull Racing",
+      "stint_number": 2,
+      "lap_start": 8,
+      "lap_end": 34,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 1,
+      "acronym": "VER",
+      "team": "Red Bull Racing",
+      "stint_number": 3,
+      "lap_start": 35,
+      "lap_end": 54,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 1,
+      "acronym": "VER",
+      "team": "Red Bull Racing",
+      "stint_number": 4,
+      "lap_start": 55,
+      "lap_end": 71,
+      "compound": "SOFT",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 4,
+      "acronym": "NOR",
+      "team": "McLaren",
+      "stint_number": 1,
+      "lap_start": 1,
+      "lap_end": 30,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 4,
+      "acronym": "NOR",
+      "team": "McLaren",
+      "stint_number": 2,
+      "lap_start": 31,
+      "lap_end": 50,
+      "compound": "SOFT",
+      "tyre_age_at_start": 3
+    },
+    {
+      "driver_number": 4,
+      "acronym": "NOR",
+      "team": "McLaren",
+      "stint_number": 3,
+      "lap_start": 51,
+      "lap_end": 71,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 9
+    },
+    {
+      "driver_number": 5,
+      "acronym": "BOR",
+      "team": "Kick Sauber",
+      "stint_number": 1,
+      "lap_start": 1,
+      "lap_end": 1,
+      "compound": "SOFT",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 6,
+      "acronym": "HAD",
+      "team": "Racing Bulls",
+      "stint_number": 1,
+      "lap_start": 1,
+      "lap_end": 18,
+      "compound": "SOFT",
+      "tyre_age_at_start": 3
+    },
+    {
+      "driver_number": 6,
+      "acronym": "HAD",
+      "team": "Racing Bulls",
+      "stint_number": 2,
+      "lap_start": 19,
+      "lap_end": 37,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 6
+    },
+    {
+      "driver_number": 6,
+      "acronym": "HAD",
+      "team": "Racing Bulls",
+      "stint_number": 3,
+      "lap_start": 38,
+      "lap_end": 71,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 10,
+      "acronym": "GAS",
+      "team": "Alpine",
+      "stint_number": 1,
+      "lap_start": 1,
+      "lap_end": 18,
+      "compound": "SOFT",
+      "tyre_age_at_start": 3
+    },
+    {
+      "driver_number": 10,
+      "acronym": "GAS",
+      "team": "Alpine",
+      "stint_number": 2,
+      "lap_start": 19,
+      "lap_end": 39,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 10,
+      "acronym": "GAS",
+      "team": "Alpine",
+      "stint_number": 3,
+      "lap_start": 40,
+      "lap_end": 71,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 6
+    },
+    {
+      "driver_number": 12,
+      "acronym": "ANT",
+      "team": "Mercedes",
+      "stint_number": 1,
+      "lap_start": 1,
+      "lap_end": 21,
+      "compound": "SOFT",
+      "tyre_age_at_start": 3
+    },
+    {
+      "driver_number": 12,
+      "acronym": "ANT",
+      "team": "Mercedes",
+      "stint_number": 2,
+      "lap_start": 22,
+      "lap_end": 47,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 12,
+      "acronym": "ANT",
+      "team": "Mercedes",
+      "stint_number": 3,
+      "lap_start": 48,
+      "lap_end": 71,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 5
+    },
+    {
+      "driver_number": 14,
+      "acronym": "ALO",
+      "team": "Aston Martin",
+      "stint_number": 1,
+      "lap_start": 1,
+      "lap_end": 28,
+      "compound": "HARD",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 14,
+      "acronym": "ALO",
+      "team": "Aston Martin",
+      "stint_number": 2,
+      "lap_start": 29,
+      "lap_end": 46,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 6
+    },
+    {
+      "driver_number": 14,
+      "acronym": "ALO",
+      "team": "Aston Martin",
+      "stint_number": 3,
+      "lap_start": 47,
+      "lap_end": 71,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 16,
+      "acronym": "LEC",
+      "team": "Ferrari",
+      "stint_number": 1,
+      "lap_start": 1,
+      "lap_end": 5,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 18,
+      "acronym": "STR",
+      "team": "Aston Martin",
+      "stint_number": 1,
+      "lap_start": 1,
+      "lap_end": 29,
+      "compound": "HARD",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 18,
+      "acronym": "STR",
+      "team": "Aston Martin",
+      "stint_number": 2,
+      "lap_start": 30,
+      "lap_end": 54,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 18,
+      "acronym": "STR",
+      "team": "Aston Martin",
+      "stint_number": 3,
+      "lap_start": 55,
+      "lap_end": 71,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 22,
+      "acronym": "TSU",
+      "team": "Red Bull Racing",
+      "stint_number": 1,
+      "lap_start": 1,
+      "lap_end": 2,
+      "compound": "HARD",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 22,
+      "acronym": "TSU",
+      "team": "Red Bull Racing",
+      "stint_number": 2,
+      "lap_start": 3,
+      "lap_end": 24,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 22,
+      "acronym": "TSU",
+      "team": "Red Bull Racing",
+      "stint_number": 3,
+      "lap_start": 25,
+      "lap_end": 47,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 22,
+      "acronym": "TSU",
+      "team": "Red Bull Racing",
+      "stint_number": 4,
+      "lap_start": 48,
+      "lap_end": 71,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 23,
+      "acronym": "ALB",
+      "team": "Williams",
+      "stint_number": 1,
+      "lap_start": 1,
+      "lap_end": 35,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 6
+    },
+    {
+      "driver_number": 23,
+      "acronym": "ALB",
+      "team": "Williams",
+      "stint_number": 2,
+      "lap_start": 36,
+      "lap_end": 55,
+      "compound": "SOFT",
+      "tyre_age_at_start": 2
+    },
+    {
+      "driver_number": 23,
+      "acronym": "ALB",
+      "team": "Williams",
+      "stint_number": 3,
+      "lap_start": 56,
+      "lap_end": 71,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 27,
+      "acronym": "HUL",
+      "team": "Kick Sauber",
+      "stint_number": 1,
+      "lap_start": 1,
+      "lap_end": 36,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 27,
+      "acronym": "HUL",
+      "team": "Kick Sauber",
+      "stint_number": 2,
+      "lap_start": 37,
+      "lap_end": 71,
+      "compound": "SOFT",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 30,
+      "acronym": "LAW",
+      "team": "Racing Bulls",
+      "stint_number": 1,
+      "lap_start": 1,
+      "lap_end": 19,
+      "compound": "SOFT",
+      "tyre_age_at_start": 3
+    },
+    {
+      "driver_number": 30,
+      "acronym": "LAW",
+      "team": "Racing Bulls",
+      "stint_number": 2,
+      "lap_start": 20,
+      "lap_end": 71,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 31,
+      "acronym": "OCO",
+      "team": "Haas F1 Team",
+      "stint_number": 1,
+      "lap_start": 1,
+      "lap_end": 8,
+      "compound": "HARD",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 31,
+      "acronym": "OCO",
+      "team": "Haas F1 Team",
+      "stint_number": 2,
+      "lap_start": 9,
+      "lap_end": 47,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 31,
+      "acronym": "OCO",
+      "team": "Haas F1 Team",
+      "stint_number": 3,
+      "lap_start": 48,
+      "lap_end": 71,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 43,
+      "acronym": "COL",
+      "team": "Alpine",
+      "stint_number": 1,
+      "lap_start": 1,
+      "lap_end": 29,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 43,
+      "acronym": "COL",
+      "team": "Alpine",
+      "stint_number": 2,
+      "lap_start": 30,
+      "lap_end": 43,
+      "compound": "SOFT",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 43,
+      "acronym": "COL",
+      "team": "Alpine",
+      "stint_number": 3,
+      "lap_start": 44,
+      "lap_end": 71,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 44,
+      "acronym": "HAM",
+      "team": "Ferrari",
+      "stint_number": 1,
+      "lap_start": 1,
+      "lap_end": 2,
+      "compound": "SOFT",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 44,
+      "acronym": "HAM",
+      "team": "Ferrari",
+      "stint_number": 2,
+      "lap_start": 3,
+      "lap_end": 14,
+      "compound": "HARD",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 44,
+      "acronym": "HAM",
+      "team": "Ferrari",
+      "stint_number": 3,
+      "lap_start": 15,
+      "lap_end": 32,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 44,
+      "acronym": "HAM",
+      "team": "Ferrari",
+      "stint_number": 4,
+      "lap_start": 33,
+      "lap_end": 37,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 55,
+      "acronym": "SAI",
+      "team": "Williams",
+      "stint_number": 1,
+      "lap_start": 1,
+      "lap_end": 17,
+      "compound": "SOFT",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 55,
+      "acronym": "SAI",
+      "team": "Williams",
+      "stint_number": 2,
+      "lap_start": 18,
+      "lap_end": 38,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 55,
+      "acronym": "SAI",
+      "team": "Williams",
+      "stint_number": 3,
+      "lap_start": 39,
+      "lap_end": 71,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 63,
+      "acronym": "RUS",
+      "team": "Mercedes",
+      "stint_number": 1,
+      "lap_start": 1,
+      "lap_end": 34,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 4
+    },
+    {
+      "driver_number": 63,
+      "acronym": "RUS",
+      "team": "Mercedes",
+      "stint_number": 2,
+      "lap_start": 35,
+      "lap_end": 48,
+      "compound": "SOFT",
+      "tyre_age_at_start": 1
+    },
+    {
+      "driver_number": 63,
+      "acronym": "RUS",
+      "team": "Mercedes",
+      "stint_number": 3,
+      "lap_start": 49,
+      "lap_end": 71,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 3
+    },
+    {
+      "driver_number": 81,
+      "acronym": "PIA",
+      "team": "McLaren",
+      "stint_number": 1,
+      "lap_start": 1,
+      "lap_end": 38,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 81,
+      "acronym": "PIA",
+      "team": "McLaren",
+      "stint_number": 2,
+      "lap_start": 39,
+      "lap_end": 51,
+      "compound": "SOFT",
+      "tyre_age_at_start": 2
+    },
+    {
+      "driver_number": 81,
+      "acronym": "PIA",
+      "team": "McLaren",
+      "stint_number": 3,
+      "lap_start": 52,
+      "lap_end": 71,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 87,
+      "acronym": "BEA",
+      "team": "Haas F1 Team",
+      "stint_number": 1,
+      "lap_start": 1,
+      "lap_end": 17,
+      "compound": "SOFT",
+      "tyre_age_at_start": 2
+    },
+    {
+      "driver_number": 87,
+      "acronym": "BEA",
+      "team": "Haas F1 Team",
+      "stint_number": 2,
+      "lap_start": 18,
+      "lap_end": 42,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    },
+    {
+      "driver_number": 87,
+      "acronym": "BEA",
+      "team": "Haas F1 Team",
+      "stint_number": 3,
+      "lap_start": 43,
+      "lap_end": 71,
+      "compound": "MEDIUM",
+      "tyre_age_at_start": 0
+    }
+  ],
+  "weather": {
+    "start": {
+      "air_temperature": 17.9,
+      "track_temperature": 32.7,
+      "humidity": 70.0,
+      "rainfall": 0
+    },
+    "end": {
+      "air_temperature": 17.4,
+      "track_temperature": 31.4,
+      "humidity": 70.0,
+      "rainfall": 0
+    }
+  }
+}

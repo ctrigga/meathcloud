@@ -104,6 +104,12 @@ def get_weather_snapshot(data):
 
 def update_race_index(summary, index_path="static/f1/index.json"):
     import os
+    import unicodedata
+
+    def slugify(text):
+        text = unicodedata.normalize('NFKD', text)
+        text = text.encode('ascii', 'ignore').decode('ascii')
+        return text.lower().replace(' ', '_')
     
     # Load existing index or start fresh
     if os.path.exists(index_path):
@@ -176,7 +182,14 @@ def main():
 
     # Write summary JSON
     import os
-    out_dir = f"static/f1/{summary['race'].lower().replace(' ', '_')}_{summary['year']}"
+    import unicodedata
+    def slugify(text):
+        text = unicodedata.normalize('NFKD', text)
+        text = text.encode('ascii', 'ignore').decode('ascii')
+        return text.lower().replace(' ', '_')
+
+    race_slug = f"{slugify(summary['race'])}_{summary['year']}"
+    out_dir = f"static/f1/{race_slug}"
     os.makedirs(out_dir, exist_ok=True)
     out_path = f"{out_dir}/summary.json"
     with open(out_path, "w") as f:
