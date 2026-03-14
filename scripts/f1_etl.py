@@ -117,7 +117,19 @@ def main():
               f"humidity={w.get('humidity')}%  "
               f"rainfall={w.get('rainfall')}")
         
-        # Bundle payload
+    # Pull pit stops
+    print("\n[ Pit Stops ]")
+    pits = fetch("pit", {"session_key": SESSION_KEY})
+    print(f"  Total pit stops: {len(pits)}")
+    for p in sorted(pits, key=lambda x: (x["driver_number"], x["lap_number"])):
+        driver = drivers_by_number.get(p["driver_number"], {})
+        stop = f"{p['stop_duration']}s" if p.get("stop_duration") else "N/A"
+        lane = p.get("pit_duration")
+        print(f"  #{p['driver_number']:>2} {driver.get('name_acronym','?')} "
+              f"lap {p['lap_number']:>3} — "
+              f"stop: {stop}  lane: {lane}s")
+        
+    # Bundle payload
     print("\n[ Bundling Payload ]")
     payload = {
         "ingested_at": datetime.now(timezone.utc).isoformat(),
@@ -125,6 +137,7 @@ def main():
         "drivers": drivers,
         "laps": laps,
         "stints": stints,
+        "pits": pits,
         "weather": weather,
     }
     print(f"  Keys: {list(payload.keys())}")

@@ -80,6 +80,25 @@ def get_strategy(data, drivers_map):
         })
     return strategy
 
+def get_pit_stops(data, drivers_map):
+    pits = data.get("pits", [])
+    result = []
+    for p in sorted(pits, key=lambda x: (x["driver_number"], x["lap_number"])):
+        d = drivers_map.get(p["driver_number"], {})
+        lane = p.get("pit_duration") or p.get("lane_duration")
+        stop = p.get("stop_duration")
+        # Flag abnormal stops (red flag, VSC, mechanical)
+        abnormal = lane and lane > 60
+        result.append({
+            "driver_number": p["driver_number"],
+            "acronym": d.get("name_acronym", "???"),
+            "lap_number": p["lap_number"],
+            "lane_duration": lane,
+            "stop_duration": stop,
+            "abnormal": abnormal,
+        })
+    return result
+
 def get_weather_snapshot(data):
     samples = data["weather"]
     if not samples:
@@ -155,6 +174,7 @@ def main():
     fastest_lap = get_fastest_lap(data, drivers_map)
     strategy = get_strategy(data, drivers_map)
     weather = get_weather_snapshot(data)
+    pit_stops = get_pit_stops(data, drivers_map)
 
     summary = {
         "race": data["session"]["location"],
@@ -165,6 +185,7 @@ def main():
         "fastest_lap": fastest_lap,
         "strategy": strategy,
         "weather": weather,
+        "pit_stops": pit_stops,
     }
 
     # Print summary
