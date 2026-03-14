@@ -72,6 +72,19 @@ in blob storage.
 Lesson learned: OpenF1 rate limits aggressive requests. A 15 second sleep 
 between races keeps things polite and avoids 429 errors.
 
+## Mobile Friendly Pit Stop Details
+
+The tyre strategy bars are interactive on both desktop and mobile. On desktop, 
+hovering over any stint bar shows a tooltip with the compound, lap range, and 
+pit stop time. On mobile where hover doesn't exist, tapping a bar shows the 
+same information in a popup below the strategy chart. Tap the same bar again 
+to dismiss it.
+
+Pit stop times come from the OpenF1 pit endpoint and show both the total lane 
+duration (full time in the pit lane) and the stationary stop duration where 
+available. Abnormal stops caused by red flags or VSC periods are flagged 
+automatically — anything over 60 seconds is marked as abnormal.
+
 ## What's Next
 
 The raw lap time data sitting in blob storage opens up some interesting 
