@@ -2,6 +2,7 @@ import json
 import sys
 from datetime import datetime, timezone
 from collections import defaultdict
+import urllib.request
 
 def load_blob(filepath):
     with open(filepath) as f:
@@ -9,6 +10,20 @@ def load_blob(filepath):
 
 def build_drivers_map(data):
     return {d["driver_number"]: d for d in data["drivers"]}
+
+def fetch(endpoint, params=None):
+    base_url = "https://api.openf1.org/v1"
+    url = f"{base_url}/{endpoint}"
+    if params:
+        query = "&".join(f"{k}={v}" for k, v in params.items())
+        url = f"{url}?{query}"
+    try:
+        with urllib.request.urlopen(url) as response:
+            return json.loads(response.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        if e.code == 404:
+            return []
+        raise
 
 def derive_finishing_order(data, drivers_map):
     laps = data["laps"]
@@ -81,13 +96,19 @@ def get_strategy(data, drivers_map):
     return strategy
 
 def get_pit_stops(data, drivers_map):
-    pits = data.get("pits", [])
+    pits = data.get("pits")
+    
+    # If not in blob, fetch directly from OpenF1
+    if not pits:
+        session_key = data["session"]["session_key"]
+        print(f"  Fetching pit data from OpenF1 (session_key={session_key})...")
+        pits = fetch("pit", {"session_key": session_key})
+
     result = []
     for p in sorted(pits, key=lambda x: (x["driver_number"], x["lap_number"])):
         d = drivers_map.get(p["driver_number"], {})
         lane = p.get("pit_duration") or p.get("lane_duration")
         stop = p.get("stop_duration")
-        # Flag abnormal stops (red flag, VSC, mechanical)
         abnormal = lane and lane > 60
         result.append({
             "driver_number": p["driver_number"],

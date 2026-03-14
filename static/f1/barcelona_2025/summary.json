@@ -911,5 +911,439 @@
       "humidity": 58.0,
       "rainfall": 0
     }
-  }
+  },
+  "pit_stops": [
+    {
+      "driver_number": 1,
+      "acronym": "VER",
+      "lap_number": 13,
+      "lane_duration": 21.869,
+      "stop_duration": 2.5,
+      "abnormal": false
+    },
+    {
+      "driver_number": 1,
+      "acronym": "VER",
+      "lap_number": 29,
+      "lane_duration": 21.933,
+      "stop_duration": 2.3,
+      "abnormal": false
+    },
+    {
+      "driver_number": 1,
+      "acronym": "VER",
+      "lap_number": 47,
+      "lane_duration": 21.802,
+      "stop_duration": 2.4,
+      "abnormal": false
+    },
+    {
+      "driver_number": 1,
+      "acronym": "VER",
+      "lap_number": 55,
+      "lane_duration": 22.197,
+      "stop_duration": 2.4,
+      "abnormal": false
+    },
+    {
+      "driver_number": 4,
+      "acronym": "NOR",
+      "lap_number": 21,
+      "lane_duration": 22.454,
+      "stop_duration": 3.0,
+      "abnormal": false
+    },
+    {
+      "driver_number": 4,
+      "acronym": "NOR",
+      "lap_number": 48,
+      "lane_duration": 21.863,
+      "stop_duration": 2.3,
+      "abnormal": false
+    },
+    {
+      "driver_number": 4,
+      "acronym": "NOR",
+      "lap_number": 55,
+      "lane_duration": 23.562,
+      "stop_duration": 3.9,
+      "abnormal": false
+    },
+    {
+      "driver_number": 5,
+      "acronym": "BOR",
+      "lap_number": 19,
+      "lane_duration": 22.041,
+      "stop_duration": 2.1,
+      "abnormal": false
+    },
+    {
+      "driver_number": 5,
+      "acronym": "BOR",
+      "lap_number": 49,
+      "lane_duration": 22.953,
+      "stop_duration": 3.4,
+      "abnormal": false
+    },
+    {
+      "driver_number": 6,
+      "acronym": "HAD",
+      "lap_number": 19,
+      "lane_duration": 21.769,
+      "stop_duration": 2.5,
+      "abnormal": false
+    },
+    {
+      "driver_number": 6,
+      "acronym": "HAD",
+      "lap_number": 48,
+      "lane_duration": 22.019,
+      "stop_duration": 2.4,
+      "abnormal": false
+    },
+    {
+      "driver_number": 6,
+      "acronym": "HAD",
+      "lap_number": 55,
+      "lane_duration": 21.841,
+      "stop_duration": 2.5,
+      "abnormal": false
+    },
+    {
+      "driver_number": 10,
+      "acronym": "GAS",
+      "lap_number": 10,
+      "lane_duration": 22.224,
+      "stop_duration": 2.4,
+      "abnormal": false
+    },
+    {
+      "driver_number": 10,
+      "acronym": "GAS",
+      "lap_number": 31,
+      "lane_duration": 22.006,
+      "stop_duration": 2.1,
+      "abnormal": false
+    },
+    {
+      "driver_number": 10,
+      "acronym": "GAS",
+      "lap_number": 55,
+      "lane_duration": 22.818,
+      "stop_duration": 3.0,
+      "abnormal": false
+    },
+    {
+      "driver_number": 12,
+      "acronym": "ANT",
+      "lap_number": 21,
+      "lane_duration": 22.234,
+      "stop_duration": 2.5,
+      "abnormal": false
+    },
+    {
+      "driver_number": 12,
+      "acronym": "ANT",
+      "lap_number": 49,
+      "lane_duration": 23.457,
+      "stop_duration": 3.8,
+      "abnormal": false
+    },
+    {
+      "driver_number": 14,
+      "acronym": "ALO",
+      "lap_number": 15,
+      "lane_duration": 22.782,
+      "stop_duration": 3.1,
+      "abnormal": false
+    },
+    {
+      "driver_number": 14,
+      "acronym": "ALO",
+      "lap_number": 42,
+      "lane_duration": 22.242,
+      "stop_duration": 2.8,
+      "abnormal": false
+    },
+    {
+      "driver_number": 14,
+      "acronym": "ALO",
+      "lap_number": 54,
+      "lane_duration": 22.216,
+      "stop_duration": 2.6,
+      "abnormal": false
+    },
+    {
+      "driver_number": 16,
+      "acronym": "LEC",
+      "lap_number": 17,
+      "lane_duration": 21.863,
+      "stop_duration": 2.1,
+      "abnormal": false
+    },
+    {
+      "driver_number": 16,
+      "acronym": "LEC",
+      "lap_number": 40,
+      "lane_duration": 21.893,
+      "stop_duration": 2.3,
+      "abnormal": false
+    },
+    {
+      "driver_number": 16,
+      "acronym": "LEC",
+      "lap_number": 55,
+      "lane_duration": 22.383,
+      "stop_duration": 2.8,
+      "abnormal": false
+    },
+    {
+      "driver_number": 22,
+      "acronym": "TSU",
+      "lap_number": 8,
+      "lane_duration": 21.868,
+      "stop_duration": 2.3,
+      "abnormal": false
+    },
+    {
+      "driver_number": 22,
+      "acronym": "TSU",
+      "lap_number": 24,
+      "lane_duration": 22.056,
+      "stop_duration": 2.4,
+      "abnormal": false
+    },
+    {
+      "driver_number": 22,
+      "acronym": "TSU",
+      "lap_number": 44,
+      "lane_duration": 21.822,
+      "stop_duration": 2.4,
+      "abnormal": false
+    },
+    {
+      "driver_number": 22,
+      "acronym": "TSU",
+      "lap_number": 54,
+      "lane_duration": 22.283,
+      "stop_duration": 2.5,
+      "abnormal": false
+    },
+    {
+      "driver_number": 23,
+      "acronym": "ALB",
+      "lap_number": 6,
+      "lane_duration": 30.823,
+      "stop_duration": 11.4,
+      "abnormal": false
+    },
+    {
+      "driver_number": 23,
+      "acronym": "ALB",
+      "lap_number": 26,
+      "lane_duration": 37.674,
+      "stop_duration": 16.9,
+      "abnormal": false
+    },
+    {
+      "driver_number": 27,
+      "acronym": "HUL",
+      "lap_number": 9,
+      "lane_duration": 22.233,
+      "stop_duration": 2.7,
+      "abnormal": false
+    },
+    {
+      "driver_number": 27,
+      "acronym": "HUL",
+      "lap_number": 45,
+      "lane_duration": 21.849,
+      "stop_duration": 2.5,
+      "abnormal": false
+    },
+    {
+      "driver_number": 27,
+      "acronym": "HUL",
+      "lap_number": 56,
+      "lane_duration": 21.904,
+      "stop_duration": 2.7,
+      "abnormal": false
+    },
+    {
+      "driver_number": 30,
+      "acronym": "LAW",
+      "lap_number": 18,
+      "lane_duration": 22.039,
+      "stop_duration": 2.5,
+      "abnormal": false
+    },
+    {
+      "driver_number": 30,
+      "acronym": "LAW",
+      "lap_number": 44,
+      "lane_duration": 22.127,
+      "stop_duration": 2.3,
+      "abnormal": false
+    },
+    {
+      "driver_number": 31,
+      "acronym": "OCO",
+      "lap_number": 20,
+      "lane_duration": 22.554,
+      "stop_duration": 2.8,
+      "abnormal": false
+    },
+    {
+      "driver_number": 31,
+      "acronym": "OCO",
+      "lap_number": 43,
+      "lane_duration": 22.468,
+      "stop_duration": 2.7,
+      "abnormal": false
+    },
+    {
+      "driver_number": 43,
+      "acronym": "COL",
+      "lap_number": 14,
+      "lane_duration": 22.491,
+      "stop_duration": 2.8,
+      "abnormal": false
+    },
+    {
+      "driver_number": 43,
+      "acronym": "COL",
+      "lap_number": 39,
+      "lane_duration": 22.119,
+      "stop_duration": 2.4,
+      "abnormal": false
+    },
+    {
+      "driver_number": 43,
+      "acronym": "COL",
+      "lap_number": 54,
+      "lane_duration": 21.874,
+      "stop_duration": 2.1,
+      "abnormal": false
+    },
+    {
+      "driver_number": 44,
+      "acronym": "HAM",
+      "lap_number": 16,
+      "lane_duration": 21.957,
+      "stop_duration": 2.2,
+      "abnormal": false
+    },
+    {
+      "driver_number": 44,
+      "acronym": "HAM",
+      "lap_number": 46,
+      "lane_duration": 24.416,
+      "stop_duration": 4.9,
+      "abnormal": false
+    },
+    {
+      "driver_number": 44,
+      "acronym": "HAM",
+      "lap_number": 55,
+      "lane_duration": 22.83,
+      "stop_duration": 2.7,
+      "abnormal": false
+    },
+    {
+      "driver_number": 55,
+      "acronym": "SAI",
+      "lap_number": 9,
+      "lane_duration": 30.547,
+      "stop_duration": 10.8,
+      "abnormal": false
+    },
+    {
+      "driver_number": 55,
+      "acronym": "SAI",
+      "lap_number": 34,
+      "lane_duration": 22.346,
+      "stop_duration": 3.0,
+      "abnormal": false
+    },
+    {
+      "driver_number": 55,
+      "acronym": "SAI",
+      "lap_number": 55,
+      "lane_duration": 21.984,
+      "stop_duration": 2.8,
+      "abnormal": false
+    },
+    {
+      "driver_number": 63,
+      "acronym": "RUS",
+      "lap_number": 20,
+      "lane_duration": 21.739,
+      "stop_duration": 2.2,
+      "abnormal": false
+    },
+    {
+      "driver_number": 63,
+      "acronym": "RUS",
+      "lap_number": 41,
+      "lane_duration": 21.752,
+      "stop_duration": 2.3,
+      "abnormal": false
+    },
+    {
+      "driver_number": 63,
+      "acronym": "RUS",
+      "lap_number": 55,
+      "lane_duration": 23.167,
+      "stop_duration": 3.5,
+      "abnormal": false
+    },
+    {
+      "driver_number": 81,
+      "acronym": "PIA",
+      "lap_number": 22,
+      "lane_duration": 21.858,
+      "stop_duration": 2.2,
+      "abnormal": false
+    },
+    {
+      "driver_number": 81,
+      "acronym": "PIA",
+      "lap_number": 49,
+      "lane_duration": 21.838,
+      "stop_duration": 2.2,
+      "abnormal": false
+    },
+    {
+      "driver_number": 81,
+      "acronym": "PIA",
+      "lap_number": 55,
+      "lane_duration": 22.748,
+      "stop_duration": 3.3,
+      "abnormal": false
+    },
+    {
+      "driver_number": 87,
+      "acronym": "BEA",
+      "lap_number": 8,
+      "lane_duration": 22.009,
+      "stop_duration": 2.6,
+      "abnormal": false
+    },
+    {
+      "driver_number": 87,
+      "acronym": "BEA",
+      "lap_number": 35,
+      "lane_duration": 22.27,
+      "stop_duration": 2.9,
+      "abnormal": false
+    },
+    {
+      "driver_number": 87,
+      "acronym": "BEA",
+      "lap_number": 54,
+      "lane_duration": 22.765,
+      "stop_duration": 3.4,
+      "abnormal": false
+    }
+  ]
 }
