@@ -735,5 +735,6 @@
       "humidity": 52.7,
       "rainfall": 0
     }
-  }
+  },
+  "pit_stops": []
 }
