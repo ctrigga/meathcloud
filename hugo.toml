@@ -2,7 +2,8 @@ baseURL = "https://www.meath.cloud"
 languageCode = "en-us"
 title = "Derrek"
 theme = "hello-friend-ng"
-paginate = 10
+[pagination]
+  pagerSize = 10
 
 [params]
   dateform        = "Jan 2, 2006"
@@ -54,3 +55,8 @@ paginate = 10
     name = "F1"
     url = "/f1/"
     weight = 4
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
