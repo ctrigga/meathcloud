@@ -1,0 +1,22 @@
+[
+  {
+    "race": "Yas Island",
+    "year": "2025",
+    "circuit": "Yas Marina Circuit",
+    "date": "2025-12-07",
+    "slug": "yas_island_2025",
+    "winner": "Max VERSTAPPEN",
+    "winner_team": "Red Bull Racing",
+    "fastest_lap": "1:26.725"
+  },
+  {
+    "race": "Melbourne",
+    "year": "2026",
+    "circuit": "Melbourne",
+    "date": "2026-03-08",
+    "slug": "melbourne_2026",
+    "winner": "George RUSSELL",
+    "winner_team": "Mercedes",
+    "fastest_lap": "1:22.091"
+  }
+]

@@ -101,6 +101,44 @@ def get_weather_snapshot(data):
             "rainfall": last.get("rainfall"),
         }
     }
+
+def update_race_index(summary, index_path="static/f1/index.json"):
+    import os
+    
+    # Load existing index or start fresh
+    if os.path.exists(index_path):
+        with open(index_path) as f:
+            index = json.load(f)
+    else:
+        index = []
+
+    # Build entry for this race
+    entry = {
+        "race": summary["race"],
+        "year": summary["year"],
+        "circuit": summary["circuit"],
+        "date": summary["date"],
+        "slug": f"{summary['race'].lower().replace(' ', '_')}_{summary['year']}",
+        "winner": summary["results"][0]["full_name"] if summary["results"] else "Unknown",
+        "winner_team": summary["results"][0]["team"] if summary["results"] else "Unknown",
+        "fastest_lap": summary["fastest_lap"]["lap_duration_formatted"] if summary["fastest_lap"] else None,
+    }
+
+    # Update existing entry or append
+    existing = next((i for i, r in enumerate(index) if r["slug"] == entry["slug"]), None)
+    if existing is not None:
+        index[existing] = entry
+    else:
+        index.append(entry)
+
+    # Sort by date
+    index.sort(key=lambda r: r["date"])
+
+    os.makedirs(os.path.dirname(index_path), exist_ok=True)
+    with open(index_path, "w") as f:
+        json.dump(index, f, indent=2)
+
+    print(f"Race index updated: {len(index)} race(s)")
 def main():
     
     filepath = sys.argv[1] if len(sys.argv) > 1 else "/tmp/melbourne_2026.json"
@@ -143,6 +181,7 @@ def main():
     out_path = f"{out_dir}/summary.json"
     with open(out_path, "w") as f:
         json.dump(summary, f, indent=2)
+    update_race_index(summary)
     print(f"\nSummary written to {out_path}")
 if __name__ == "__main__":
     main()
