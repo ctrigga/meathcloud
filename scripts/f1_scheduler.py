@@ -18,13 +18,22 @@ def fetch(endpoint, params=None):
 
 def main():
     now = datetime.now(timezone.utc)
-    print(f"=== F1 Scheduler ===")
-    print(f"Current time (UTC): {now.isoformat()}\n")
-
-    # Fetch all 2026 race sessions
-    print("Fetching 2026 race calendar...")
-    sessions = fetch("sessions", {"year": 2026, "session_type": "Race"})
+    # Exit early if no race trigger falls today
+    today = now.date()
+    sessions = fetch("sessions", {"year": now.year, "session_type": "Race"})
     sessions.sort(key=lambda s: s["date_start"])
+
+    race_days = set()
+    for s in sessions:
+        race_start = datetime.fromisoformat(s["date_start"])
+        trigger_time = race_start + timedelta(hours=TRIGGER_OFFSET_HOURS)
+        race_days.add(trigger_time.date())
+
+    if today not in race_days:
+        print(f"No race trigger today ({today}). Exiting.")
+        sys.exit(0)
+    print("=== F1 Scheduler ===")
+    print(f"Current time (UTC): {now.isoformat()}\n")
 
     print(f"Found {len(sessions)} races\n")
     print(f"{'Race':<30} {'Start (UTC)':<30} {'Trigger (UTC)':<30} Status")
