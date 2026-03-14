@@ -49,3 +49,8 @@ paginate = 10
     name       = "Resume"
     url        = "/resume/"
     weight     = 30
+  [[menu.main]]
+    identifier = "f1"
+    name = "F1"
+    url = "/f1/"
+    weight = 4
