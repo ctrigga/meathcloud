@@ -5,8 +5,8 @@ import urllib.request
 from datetime import datetime, timezone, timedelta
 
 BASE_URL = "https://api.openf1.org/v1"
-TRIGGER_OFFSET_HOURS = 12
-TRIGGER_WINDOW_MINUTES = 720  # matches cron frequency + buffer
+TRIGGER_OFFSET_HOURS = 3.5
+TRIGGER_WINDOW_MINUTES = 20  # matches cron frequency + buffer
 
 def fetch(endpoint, params=None):
     url = f"{BASE_URL}/{endpoint}"
