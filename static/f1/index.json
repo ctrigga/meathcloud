@@ -4,7 +4,9 @@
     "year": "2025",
     "circuit": "Melbourne",
     "date": "2025-03-16",
+    "session_type": "Race",
     "slug": "melbourne_2025",
+    "file_path": "melbourne_2025/summary.json",
     "winner": "Lando NORRIS",
     "winner_team": "McLaren",
     "fastest_lap": "1:22.167"
@@ -14,7 +16,9 @@
     "year": "2025",
     "circuit": "Shanghai",
     "date": "2025-03-23",
+    "session_type": "Race",
     "slug": "shanghai_2025",
+    "file_path": "shanghai_2025/summary.json",
     "winner": "Oscar PIASTRI",
     "winner_team": "McLaren",
     "fastest_lap": "1:35.069"
@@ -24,7 +28,9 @@
     "year": "2025",
     "circuit": "Suzuka",
     "date": "2025-04-06",
+    "session_type": "Race",
     "slug": "suzuka_2025",
+    "file_path": "suzuka_2025/summary.json",
     "winner": "Max VERSTAPPEN",
     "winner_team": "Red Bull Racing",
     "fastest_lap": "1:30.965"
@@ -34,7 +40,9 @@
     "year": "2025",
     "circuit": "Sakhir",
     "date": "2025-04-13",
+    "session_type": "Race",
     "slug": "sakhir_2025",
+    "file_path": "sakhir_2025/summary.json",
     "winner": "Oscar PIASTRI",
     "winner_team": "McLaren",
     "fastest_lap": "1:35.140"
@@ -44,7 +52,9 @@
     "year": "2025",
     "circuit": "Jeddah",
     "date": "2025-04-20",
+    "session_type": "Race",
     "slug": "jeddah_2025",
+    "file_path": "jeddah_2025/summary.json",
     "winner": "Oscar PIASTRI",
     "winner_team": "McLaren",
     "fastest_lap": "1:31.778"
@@ -54,7 +64,9 @@
     "year": "2025",
     "circuit": "Miami",
     "date": "2025-05-04",
+    "session_type": "Race",
     "slug": "miami_gardens_2025",
+    "file_path": "miami_gardens_2025/summary.json",
     "winner": "Oscar PIASTRI",
     "winner_team": "McLaren",
     "fastest_lap": "1:29.746"
@@ -64,7 +76,9 @@
     "year": "2025",
     "circuit": "Imola",
     "date": "2025-05-18",
+    "session_type": "Race",
     "slug": "imola_2025",
+    "file_path": "imola_2025/summary.json",
     "winner": "Max VERSTAPPEN",
     "winner_team": "Red Bull Racing",
     "fastest_lap": "1:17.988"
@@ -74,7 +88,9 @@
     "year": "2025",
     "circuit": "Monte Carlo",
     "date": "2025-05-25",
+    "session_type": "Race",
     "slug": "monaco_2025",
+    "file_path": "monaco_2025/summary.json",
     "winner": "Lando NORRIS",
     "winner_team": "McLaren",
     "fastest_lap": "1:13.221"
@@ -84,7 +100,9 @@
     "year": "2025",
     "circuit": "Catalunya",
     "date": "2025-06-01",
+    "session_type": "Race",
     "slug": "barcelona_2025",
+    "file_path": "barcelona_2025/summary.json",
     "winner": "Oscar PIASTRI",
     "winner_team": "McLaren",
     "fastest_lap": "1:15.743"
@@ -94,7 +112,9 @@
     "year": "2025",
     "circuit": "Montreal",
     "date": "2025-06-15",
+    "session_type": "Race",
     "slug": "montr\u00e9al_2025",
+    "file_path": "montr\u00e9al_2025/summary.json",
     "winner": "George RUSSELL",
     "winner_team": "Mercedes",
     "fastest_lap": "1:14.119"
@@ -104,7 +124,9 @@
     "year": "2025",
     "circuit": "Spielberg",
     "date": "2025-06-29",
+    "session_type": "Race",
     "slug": "spielberg_2025",
+    "file_path": "spielberg_2025/summary.json",
     "winner": "Lando NORRIS",
     "winner_team": "McLaren",
     "fastest_lap": "1:07.924"
@@ -114,7 +136,9 @@
     "year": "2025",
     "circuit": "Silverstone",
     "date": "2025-07-06",
+    "session_type": "Race",
     "slug": "silverstone_2025",
+    "file_path": "silverstone_2025/summary.json",
     "winner": "Lando NORRIS",
     "winner_team": "McLaren",
     "fastest_lap": "1:29.337"
@@ -124,7 +148,9 @@
     "year": "2025",
     "circuit": "Hungaroring",
     "date": "2025-08-03",
+    "session_type": "Race",
     "slug": "budapest_2025",
+    "file_path": "budapest_2025/summary.json",
     "winner": "Lando NORRIS",
     "winner_team": "McLaren",
     "fastest_lap": "1:19.409"
@@ -134,7 +160,9 @@
     "year": "2025",
     "circuit": "Zandvoort",
     "date": "2025-08-31",
+    "session_type": "Race",
     "slug": "zandvoort_2025",
+    "file_path": "zandvoort_2025/summary.json",
     "winner": "Oscar PIASTRI",
     "winner_team": "McLaren",
     "fastest_lap": "1:12.271"
@@ -144,7 +172,9 @@
     "year": "2025",
     "circuit": "Monza",
     "date": "2025-09-07",
+    "session_type": "Race",
     "slug": "monza_2025",
+    "file_path": "monza_2025/summary.json",
     "winner": "Max VERSTAPPEN",
     "winner_team": "Red Bull Racing",
     "fastest_lap": "1:20.901"
@@ -154,7 +184,9 @@
     "year": "2025",
     "circuit": "Baku",
     "date": "2025-09-21",
+    "session_type": "Race",
     "slug": "baku_2025",
+    "file_path": "baku_2025/summary.json",
     "winner": "Max VERSTAPPEN",
     "winner_team": "Red Bull Racing",
     "fastest_lap": "1:43.388"
@@ -164,7 +196,9 @@
     "year": "2025",
     "circuit": "Singapore",
     "date": "2025-10-05",
+    "session_type": "Race",
     "slug": "marina_bay_2025",
+    "file_path": "marina_bay_2025/summary.json",
     "winner": "George RUSSELL",
     "winner_team": "Mercedes",
     "fastest_lap": "1:33.808"
@@ -174,7 +208,9 @@
     "year": "2025",
     "circuit": "Austin",
     "date": "2025-10-19",
+    "session_type": "Race",
     "slug": "austin_2025",
+    "file_path": "austin_2025/summary.json",
     "winner": "Max VERSTAPPEN",
     "winner_team": "Red Bull Racing",
     "fastest_lap": "1:37.577"
@@ -184,7 +220,9 @@
     "year": "2025",
     "circuit": "Mexico City",
     "date": "2025-10-26",
+    "session_type": "Race",
     "slug": "mexico_city_2025",
+    "file_path": "mexico_city_2025/summary.json",
     "winner": "Lando NORRIS",
     "winner_team": "McLaren",
     "fastest_lap": "1:20.052"
@@ -194,7 +232,9 @@
     "year": "2025",
     "circuit": "Interlagos",
     "date": "2025-11-09",
+    "session_type": "Race",
     "slug": "s\u00e3o_paulo_2025",
+    "file_path": "s\u00e3o_paulo_2025/summary.json",
     "winner": "Lando NORRIS",
     "winner_team": "McLaren",
     "fastest_lap": "1:12.400"
@@ -204,7 +244,9 @@
     "year": "2025",
     "circuit": "Las Vegas",
     "date": "2025-11-23",
+    "session_type": "Race",
     "slug": "las_vegas_2025",
+    "file_path": "las_vegas_2025/summary.json",
     "winner": "Max VERSTAPPEN",
     "winner_team": "Red Bull Racing",
     "fastest_lap": "1:33.365"
@@ -214,7 +256,9 @@
     "year": "2025",
     "circuit": "Lusail",
     "date": "2025-11-30",
+    "session_type": "Race",
     "slug": "lusail_2025",
+    "file_path": "lusail_2025/summary.json",
     "winner": "Max VERSTAPPEN",
     "winner_team": "Red Bull Racing",
     "fastest_lap": "1:22.996"
@@ -224,7 +268,9 @@
     "year": "2025",
     "circuit": "Yas Marina Circuit",
     "date": "2025-12-07",
+    "session_type": "Race",
     "slug": "yas_island_2025",
+    "file_path": "yas_island_2025/summary.json",
     "winner": "Max VERSTAPPEN",
     "winner_team": "Red Bull Racing",
     "fastest_lap": "1:26.725"
@@ -234,7 +280,9 @@
     "year": "2026",
     "circuit": "Melbourne",
     "date": "2026-03-08",
+    "session_type": "Race",
     "slug": "melbourne_2026",
+    "file_path": "melbourne_2026/summary.json",
     "winner": "George RUSSELL",
     "winner_team": "Mercedes",
     "fastest_lap": "1:22.091"
@@ -243,8 +291,22 @@
     "race": "Shanghai",
     "year": "2026",
     "circuit": "Shanghai",
+    "date": "2026-03-14",
+    "session_type": "Sprint",
+    "slug": "shanghai_2026_sprint",
+    "file_path": "shanghai_2026/sprint_summary.json",
+    "winner": "George RUSSELL",
+    "winner_team": "Mercedes",
+    "fastest_lap": "1:34.753"
+  },
+  {
+    "race": "Shanghai",
+    "year": "2026",
+    "circuit": "Shanghai",
     "date": "2026-03-15",
+    "session_type": "Race",
     "slug": "shanghai_2026",
+    "file_path": "shanghai_2026/summary.json",
     "winner": "Kimi ANTONELLI",
     "winner_team": "Mercedes",
     "fastest_lap": "1:35.275"
@@ -254,7 +316,9 @@
     "year": "2026",
     "circuit": "Suzuka",
     "date": "2026-03-29",
+    "session_type": "Race",
     "slug": "suzuka_2026",
+    "file_path": "suzuka_2026/summary.json",
     "winner": "Kimi ANTONELLI",
     "winner_team": "Mercedes",
     "fastest_lap": "1:32.432"
