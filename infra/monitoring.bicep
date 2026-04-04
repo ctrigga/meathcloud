@@ -1,8 +1,15 @@
 @description('Location for all resources')
 param location string = resourceGroup().location
 
-@description('Storage account resource ID to attach diagnostics to')
-param storageAccountId string = '/subscriptions/e64020ae-80db-40fb-b774-3fbafdcf48a0/resourceGroups/rg-data-engineering/providers/Microsoft.Storage/storageAccounts/stmeathclouddev'
+// ── Existing resources ───────────────────────────────────────────────────────
+resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' existing = {
+  name: 'stmeathclouddev'
+}
+
+resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2023-01-01' existing = {
+  parent: storageAccount
+  name: 'default'
+}
 
 // ── Log Analytics Workspace ──────────────────────────────────────────────────
 resource workspace 'Microsoft.OperationalInsights/workspaces@2022-10-01' = {
@@ -27,7 +34,7 @@ resource workspace 'Microsoft.OperationalInsights/workspaces@2022-10-01' = {
 // ── Diagnostic Settings: stmeathclouddev blob service ───────────────────────
 resource blobDiagnostics 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
   name: 'diag-stmeathclouddev-blob'
-  scope: resourceId('Microsoft.Storage/storageAccounts/blobServices', 'stmeathclouddev', 'default')
+  scope: blobService
   properties: {
     workspaceId: workspace.id
     logs: [
@@ -56,7 +63,7 @@ resource blobDiagnostics 'Microsoft.Insights/diagnosticSettings@2021-05-01-previ
 // ── Diagnostic Settings: stmeathclouddev storage account (capacity metrics) ─
 resource storageDiagnostics 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
   name: 'diag-stmeathclouddev'
-  scope: resourceId('Microsoft.Storage/storageAccounts', 'stmeathclouddev')
+  scope: storageAccount
   properties: {
     workspaceId: workspace.id
     metrics: [
