@@ -2,14 +2,11 @@ name: F1 Race Scheduler
 
 on:
     schedule:
-        - cron: '*/5 * * * *' # Runs every 5 minutes
-    workflow_dispatch: # Allows manual triggering
-    
-permissions:
-      contents: write
+        - cron: '*/5 * * * *'
+    workflow_dispatch:
 
-jobs:
-  check-and-ingest:
+permissions:
+    contents: write
 
 jobs:
     check-and-ingest:
@@ -31,35 +28,34 @@ jobs:
             - name: Azure login
               uses: azure/login@v2
               with:
-                    creds: ${{ secrets.AZURE_CREDENTIALS }}      
+                  creds: ${{ secrets.AZURE_CREDENTIALS }}
 
             - name: Run F1 Scheduler ETL
               run: |
                   python scripts/f1_scheduler.py
 
-
             - name: Flatten and summarize race data
               run: |
-                    for blob in $(az storage blob list \
-                        --account-name stmeathclouddev \
-                        --container-name raw-data \
-                        --prefix "f1/" \
-                        --auth-mode login \
-                        --query "[].name" -o tsv); do
-                        race=$(echo $blob | cut -d'/' -f2)
-                        az storage blob download \
-                        --account-name stmeathclouddev \
-                        --container-name raw-data \
-                        --name "$blob" \
-                        --file "/tmp/${race}.json" \
-                        --auth-mode login
-                        python scripts/f1_flatten.py "/tmp/${race}.json"
-                    done
+                  for blob in $(az storage blob list \
+                      --account-name stmeathclouddev \
+                      --container-name raw-data \
+                      --prefix "f1/" \
+                      --auth-mode login \
+                      --query "[].name" -o tsv); do
+                      race=$(echo $blob | cut -d'/' -f2)
+                      az storage blob download \
+                      --account-name stmeathclouddev \
+                      --container-name raw-data \
+                      --name "$blob" \
+                      --file "/tmp/${race}.json" \
+                      --auth-mode login
+                      python scripts/f1_flatten.py "/tmp/${race}.json"
+                  done
 
             - name: Commit summary JSON
               run: |
-                    git config user.name "github-actions"
-                    git config user.email "actions@github.com"
-                    git add static/f1/
-                    git diff --staged --quiet || git commit -m "Auto: update F1 race summaries"
-                    git push
+                  git config user.name "github-actions"
+                  git config user.email "actions@github.com"
+                  git add static/f1/
+                  git diff --staged --quiet || git commit -m "Auto: update F1 race summaries"
+                  git push
