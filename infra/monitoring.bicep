@@ -35,3 +35,4 @@ resource subscriptionDiagnostics 'Microsoft.Insights/diagnosticSettings@2021-05-
 output workspaceId string = rgResources.outputs.workspaceId
 output workspaceName string = rgResources.outputs.workspaceName
 output customerId string = rgResources.outputs.customerId
+output appInsightsConnectionString string = rgResources.outputs.appInsightsConnectionString

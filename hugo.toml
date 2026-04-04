@@ -29,6 +29,9 @@ theme = "hello-friend-ng"
   name = "email"
   url  = "mailto:derrek@meath.cloud"
 
+[params]
+  appInsightsConnectionString = "InstrumentationKey=dbc8bbae-5369-4e1d-8df8-2f53a17e9c48;IngestionEndpoint=https://eastus-8.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus.livediagnostics.monitor.azure.com/;ApplicationId=9ae4d96e-36f2-4918-928a-50a89d333760"
+
 [taxonomies]
   tag      = "tags"
   category = "blog"

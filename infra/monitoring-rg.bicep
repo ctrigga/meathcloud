@@ -61,7 +61,29 @@ resource storageDiagnostics 'Microsoft.Insights/diagnosticSettings@2021-05-01-pr
   }
 }
 
+// ── Application Insights ─────────────────────────────────────────────────────
+resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
+  name: 'appi-meathcloud-dev'
+  location: location
+  kind: 'web'
+  tags: {
+    purpose: 'monitoring'
+    environment: 'dev'
+    project: 'meathcloud'
+  }
+  properties: {
+    Application_Type: 'web'
+    WorkspaceResourceId: workspace.id
+    RetentionInDays: 30
+    IngestionMode: 'LogAnalytics'
+    publicNetworkAccessForIngestion: 'Enabled'
+    publicNetworkAccessForQuery: 'Enabled'
+  }
+}
+
 // ── Outputs ──────────────────────────────────────────────────────────────────
 output workspaceId string = workspace.id
 output workspaceName string = workspace.name
 output customerId string = workspace.properties.customerId
+output appInsightsConnectionString string = appInsights.properties.ConnectionString
+output appInsightsInstrumentationKey string = appInsights.properties.InstrumentationKey

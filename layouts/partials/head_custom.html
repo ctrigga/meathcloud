@@ -1,0 +1,8 @@
+<!-- Azure Application Insights -->
+<script type="text/javascript">
+var sdkInstance="appInsightsSDK";window[sdkInstance]="appInsights";var aiName=window[sdkInstance],aisdk=window[aiName]||function(e){function n(e){t[e]=function(){var n=arguments;t.queue.push(function(){t[e].apply(t,n)})}}var t={initialize:!0,queue:[],sv:"8",version:2,config:e};function a(e,n){var t,a=document.createElement(e);a.type="text/javascript";a.src=n;if(t=document.getElementsByTagName(e)[0])t.parentNode.insertBefore(a,t);else document.head.appendChild(a);return a}t.initialize&&(t.config=e,window[aiName]=t,t.queue&&t.queue.length===0&&(n("trackEvent"),n("trackException"),n("trackMetric"),n("trackPageView"),n("trackTrace"),n("startTrackEvent"),n("stopTrackEvent"),n("startTrackPage"),n("stopTrackPage"),n("flush"),a("script","https://js.monitor.azure.com/scripts/b/ai.2.min.js")));return t}({
+  connectionString: "{{ .Site.Params.appInsightsConnectionString }}"
+});
+window[aiName]=aisdk;
+aisdk.trackPageView({});
+</script>
