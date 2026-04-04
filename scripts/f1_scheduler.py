@@ -5,8 +5,7 @@ import urllib.request
 from datetime import datetime, timezone, timedelta
 
 BASE_URL = "https://api.openf1.org/v1"
-TRIGGER_OFFSET_HOURS = 3.5
-TRIGGER_WINDOW_MINUTES = 20  # matches cron frequency + buffer
+POST_RACE_BUFFER_MINUTES = 30  # wait this long after date_end before ingesting
 
 def fetch(endpoint, params=None):
     url = f"{BASE_URL}/{endpoint}"
@@ -16,60 +15,71 @@ def fetch(endpoint, params=None):
     with urllib.request.urlopen(url) as response:
         return json.loads(response.read().decode("utf-8"))
 
+def slugify(location):
+    import unicodedata
+    text = unicodedata.normalize("NFKD", location)
+    text = text.encode("ascii", "ignore").decode("ascii")
+    return text.lower().replace(" ", "_")
+
+def blob_exists(slug):
+    """Returns True if a blob already exists for this race slug in stmeathclouddev."""
+    result = subprocess.run([
+        "az", "storage", "blob", "list",
+        "--account-name", "stmeathclouddev",
+        "--container-name", "raw-data",
+        "--prefix", f"f1/{slug}/",
+        "--auth-mode", "login",
+        "--query", "[0].name",
+        "-o", "tsv"
+    ], capture_output=True, text=True)
+    return bool(result.stdout.strip())
+
 def main():
     now = datetime.now(timezone.utc)
-    # Exit early if no race trigger falls today
-    today = now.date()
-    sessions = fetch("sessions", {"year": now.year, "session_type": "Race"})
-    sessions.sort(key=lambda s: s["date_start"])
-
-    race_days = set()
-    for s in sessions:
-        race_start = datetime.fromisoformat(s["date_start"])
-        trigger_time = race_start + timedelta(hours=TRIGGER_OFFSET_HOURS)
-        race_days.add(trigger_time.date())
-
-    if today not in race_days:
-        print(f"No race trigger today ({today}). Exiting.")
-        sys.exit(0)
-    print("=== F1 Scheduler ===")
+    print(f"=== F1 Scheduler ===")
     print(f"Current time (UTC): {now.isoformat()}\n")
 
-    print(f"Found {len(sessions)} races\n")
-    print(f"{'Race':<30} {'Start (UTC)':<30} {'Trigger (UTC)':<30} Status")
-    print("-" * 105)
+    sessions = fetch("sessions", {"year": now.year, "session_type": "Race"})
+    races = [s for s in sessions if s["session_name"] == "Race"]
+    races.sort(key=lambda s: s["date_start"])
 
-    next_trigger = None
+    print(f"Found {len(races)} races\n")
+    print(f"{'Race':<30} {'End (UTC)':<30} {'Status'}")
+    print("-" * 80)
 
-    for s in sessions:
-        race_start = datetime.fromisoformat(s["date_start"])
-        trigger_time = race_start + timedelta(hours=TRIGGER_OFFSET_HOURS)
-        window_start = trigger_time - timedelta(minutes=TRIGGER_WINDOW_MINUTES)
-        window_end = trigger_time + timedelta(minutes=TRIGGER_WINDOW_MINUTES)
+    to_ingest = []
 
-        if now < race_start:
-            status = "upcoming"
-        elif window_start <= now <= window_end:
-            status = ">>> TRIGGER NOW <<<"
-            next_trigger = s
-        elif now > trigger_time:
-            status = "past"
+    for s in races:
+        slug = slugify(s["location"])
+        race_year = s["date_start"][:4]
+        full_slug = f"{slug}_{race_year}"
+
+        date_end = datetime.fromisoformat(s["date_end"])
+        ingest_after = date_end + timedelta(minutes=POST_RACE_BUFFER_MINUTES)
+
+        if now < ingest_after:
+            status = "upcoming / in progress"
         else:
-            status = "race in progress"
+            exists = blob_exists(full_slug)
+            if exists:
+                status = "already ingested"
+            else:
+                status = ">>> NEEDS INGEST <<<"
+                to_ingest.append((s, full_slug))
 
-        print(f"{s['location']:<30} {s['date_start']:<30} {trigger_time.isoformat():<30} {status}")
+        print(f"{s['location']:<30} {s['date_end']:<30} {status}")
 
-    # Fire ETL if trigger window hit
-    if next_trigger:
-        print(f"\nTriggering ETL for {next_trigger['location']} "
-              f"(session_key={next_trigger['session_key']})")
+    if not to_ingest:
+        print("\nNothing to ingest. Exiting.")
+        sys.exit(0)
+
+    for s, full_slug in to_ingest:
+        print(f"\nIngesting: {s['location']} {race_year} (session_key={s['session_key']}, slug={full_slug})")
         subprocess.run([
             sys.executable, "scripts/f1_etl.py",
-            "--session-key", str(next_trigger["session_key"]),
-            "--race-name", next_trigger["location"]
+            "--session-key", str(s["session_key"]),
+            "--race-name", full_slug
         ], check=True)
-    else:
-        print("\nNo trigger due. Exiting.")
 
 if __name__ == "__main__":
     main()
