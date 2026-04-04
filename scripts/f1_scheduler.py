@@ -5,7 +5,7 @@ import urllib.request
 from datetime import datetime, timezone, timedelta
 
 BASE_URL = "https://api.openf1.org/v1"
-POST_RACE_BUFFER_MINUTES = 30  # wait this long after date_end before ingesting
+POST_RACE_BUFFER_MINUTES = 30
 
 def fetch(endpoint, params=None):
     url = f"{BASE_URL}/{endpoint}"
@@ -21,13 +21,12 @@ def slugify(location):
     text = text.encode("ascii", "ignore").decode("ascii")
     return text.lower().replace(" ", "_")
 
-def blob_exists(slug):
-    """Returns True if a blob already exists for this race slug in stmeathclouddev."""
+def blob_exists(prefix):
     result = subprocess.run([
         "az", "storage", "blob", "list",
         "--account-name", "stmeathclouddev",
         "--container-name", "raw-data",
-        "--prefix", f"f1/{slug}/",
+        "--prefix", prefix,
         "--auth-mode", "login",
         "--query", "[0].name",
         "-o", "tsv"
@@ -39,46 +38,59 @@ def main():
     print(f"=== F1 Scheduler ===")
     print(f"Current time (UTC): {now.isoformat()}\n")
 
-    sessions = fetch("sessions", {"year": now.year, "session_type": "Race"})
-    races = [s for s in sessions if s["session_name"] == "Race"]
-    races.sort(key=lambda s: s["date_start"])
+    # Fetch both Race and Sprint sessions
+    race_sessions = fetch("sessions", {"year": now.year, "session_name": "Race"})
+    sprint_sessions = fetch("sessions", {"year": now.year, "session_name": "Sprint"})
 
-    print(f"Found {len(races)} races\n")
-    print(f"{'Race':<30} {'End (UTC)':<30} {'Status'}")
-    print("-" * 80)
+    all_sessions = (
+        [(s, "Race") for s in race_sessions] +
+        [(s, "Sprint") for s in sprint_sessions]
+    )
+    all_sessions.sort(key=lambda x: x[0]["date_start"])
+
+    print(f"Found {len(race_sessions)} race(s), {len(sprint_sessions)} sprint(s)\n")
+    print(f"{'Session':<35} {'End (UTC)':<30} {'Status'}")
+    print("-" * 85)
 
     to_ingest = []
 
-    for s in races:
+    for s, session_type in all_sessions:
         slug = slugify(s["location"])
-        race_year = s["date_start"][:4]
-        full_slug = f"{slug}_{race_year}"
+        year = s["date_start"][:4]
+        slug_suffix = "_sprint" if session_type == "Sprint" else ""
+        full_slug = f"{slug}_{year}{slug_suffix}"
+        blob_prefix = f"f1/{slug}_{year}/{'sprint_' if session_type == 'Sprint' else 'race_'}"
 
         date_end = datetime.fromisoformat(s["date_end"])
         ingest_after = date_end + timedelta(minutes=POST_RACE_BUFFER_MINUTES)
 
+        label = f"{s['location']} {year} ({session_type})"
+
         if now < ingest_after:
             status = "upcoming / in progress"
         else:
-            exists = blob_exists(full_slug)
+            exists = blob_exists(blob_prefix)
             if exists:
                 status = "already ingested"
             else:
                 status = ">>> NEEDS INGEST <<<"
-                to_ingest.append((s, full_slug))
+                to_ingest.append((s, full_slug, session_type))
 
-        print(f"{s['location']:<30} {s['date_end']:<30} {status}")
+        print(f"{label:<35} {s['date_end']:<30} {status}")
 
     if not to_ingest:
         print("\nNothing to ingest. Exiting.")
         sys.exit(0)
 
-    for s, full_slug in to_ingest:
-        print(f"\nIngesting: {s['location']} {race_year} (session_key={s['session_key']}, slug={full_slug})")
+    for s, full_slug, session_type in to_ingest:
+        year = s["date_start"][:4]
+        print(f"\nIngesting: {s['location']} {year} {session_type} "
+              f"(session_key={s['session_key']}, slug={full_slug})")
         subprocess.run([
             sys.executable, "scripts/f1_etl.py",
             "--session-key", str(s["session_key"]),
-            "--race-name", full_slug
+            "--race-name", full_slug,
+            "--session-type", session_type
         ], check=True)
 
 if __name__ == "__main__":

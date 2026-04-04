@@ -28,7 +28,6 @@ def fetch(endpoint, params=None):
 def derive_finishing_order(data, drivers_map):
     laps = data["laps"]
 
-    # Count ALL laps per driver, not just timed ones
     laps_per_driver = defaultdict(int)
     last_lap_start = {}
     for lap in laps:
@@ -37,13 +36,11 @@ def derive_finishing_order(data, drivers_map):
         if lap.get("date_start"):
             last_lap_start[n] = lap["date_start"]
 
-    # Include drivers with zero laps (DNF on lap 0)
     for d in data["drivers"]:
         n = d["driver_number"]
         if n not in laps_per_driver:
             laps_per_driver[n] = 0
 
-    # Sort by laps completed desc, then last lap timestamp asc (crossed line first)
     ranked = sorted(
         laps_per_driver.keys(),
         key=lambda n: (-laps_per_driver[n], last_lap_start.get(n, ""))
@@ -97,8 +94,7 @@ def get_strategy(data, drivers_map):
 
 def get_pit_stops(data, drivers_map):
     pits = data.get("pits")
-    
-    # If not in blob, fetch directly from OpenF1
+
     if not pits:
         session_key = data["session"]["session_key"]
         print(f"  Fetching pit data from OpenF1 (session_key={session_key})...")
@@ -124,7 +120,6 @@ def get_weather_snapshot(data):
     samples = data["weather"]
     if not samples:
         return None
-    # Take first and last sample for start/end conditions
     first = samples[0]
     last = samples[-1]
     return {
@@ -150,47 +145,49 @@ def update_race_index(summary, index_path="static/f1/index.json"):
         text = unicodedata.normalize('NFKD', text)
         text = text.encode('ascii', 'ignore').decode('ascii')
         return text.lower().replace(' ', '_')
-    
-    # Load existing index or start fresh
+
     if os.path.exists(index_path):
         with open(index_path) as f:
             index = json.load(f)
     else:
         index = []
 
-    # Build entry for this race
+    session_type = summary.get("session_type", "Race")
+    slug_suffix = "_sprint" if session_type == "Sprint" else ""
+    slug = f"{summary['race'].lower().replace(' ', '_')}_{summary['year']}{slug_suffix}"
+
     entry = {
         "race": summary["race"],
         "year": summary["year"],
         "circuit": summary["circuit"],
         "date": summary["date"],
-        "slug": f"{summary['race'].lower().replace(' ', '_')}_{summary['year']}",
+        "session_type": session_type,
+        "slug": slug,
         "winner": summary["results"][0]["full_name"] if summary["results"] else "Unknown",
         "winner_team": summary["results"][0]["team"] if summary["results"] else "Unknown",
         "fastest_lap": summary["fastest_lap"]["lap_duration_formatted"] if summary["fastest_lap"] else None,
     }
 
-    # Update existing entry or append
     existing = next((i for i, r in enumerate(index) if r["slug"] == entry["slug"]), None)
     if existing is not None:
         index[existing] = entry
     else:
         index.append(entry)
 
-    # Sort by date
-    index.sort(key=lambda r: r["date"])
+    index.sort(key=lambda r: (r["date"], r.get("session_type", "Race")))
 
     os.makedirs(os.path.dirname(index_path), exist_ok=True)
     with open(index_path, "w") as f:
         json.dump(index, f, indent=2)
 
-    print(f"Race index updated: {len(index)} race(s)")
+    print(f"Race index updated: {len(index)} session(s)")
+
 def main():
-    
     filepath = sys.argv[1] if len(sys.argv) > 1 else "/tmp/melbourne_2026.json"
     data = load_blob(filepath)
     drivers_map = build_drivers_map(data)
 
+    session_type = data.get("session_type", "Race")
     results = derive_finishing_order(data, drivers_map)
     fastest_lap = get_fastest_lap(data, drivers_map)
     strategy = get_strategy(data, drivers_map)
@@ -202,6 +199,7 @@ def main():
         "year": data["session"]["date_start"][:4],
         "circuit": data["session"]["circuit_short_name"],
         "date": data["session"]["date_start"][:10],
+        "session_type": session_type,
         "results": results,
         "fastest_lap": fastest_lap,
         "strategy": strategy,
@@ -209,34 +207,38 @@ def main():
         "pit_stops": pit_stops,
     }
 
-    # Print summary
-    print(f"Race: {summary['race']} {summary['year']}")
+    print(f"{'Sprint' if session_type == 'Sprint' else 'Race'}: {summary['race']} {summary['year']}")
     print(f"\n{'Pos':<5} {'Driver':<6} {'Name':<25} {'Team':<25} {'Laps'}")
     print("-" * 75)
     for r in results:
         fl = " *** FASTEST LAP" if fastest_lap and r["driver_number"] == fastest_lap["driver_number"] else ""
         print(f"{r['position']:<5} {r['acronym']:<6} {r['full_name']:<25} {r['team']:<25} {r['laps_completed']}{fl}")
 
-    print(f"\nFastest Lap: {fastest_lap['lap_duration_formatted']} "
-          f"by {fastest_lap['acronym']} on lap {fastest_lap['lap_number']}")
-    print(f"\nWeather: {weather['start']['air_temperature']}°C air / "
-          f"{weather['start']['track_temperature']}°C track at start")
+    if fastest_lap:
+        print(f"\nFastest Lap: {fastest_lap['lap_duration_formatted']} "
+              f"by {fastest_lap['acronym']} on lap {fastest_lap['lap_number']}")
+    if weather:
+        print(f"\nWeather: {weather['start']['air_temperature']}°C air / "
+              f"{weather['start']['track_temperature']}°C track at start")
 
-    # Write summary JSON
     import os
     import unicodedata
+
     def slugify(text):
         text = unicodedata.normalize('NFKD', text)
         text = text.encode('ascii', 'ignore').decode('ascii')
         return text.lower().replace(' ', '_')
 
-    race_slug = f"{slugify(summary['race'])}_{summary['year']}"
+    slug_suffix = "_sprint" if session_type == "Sprint" else ""
+    race_slug = f"{slugify(summary['race'])}_{summary['year']}{slug_suffix}"
     out_dir = f"static/f1/{race_slug}"
     os.makedirs(out_dir, exist_ok=True)
     out_path = f"{out_dir}/summary.json"
     with open(out_path, "w") as f:
         json.dump(summary, f, indent=2)
+
     update_race_index(summary)
     print(f"\nSummary written to {out_path}")
+
 if __name__ == "__main__":
     main()

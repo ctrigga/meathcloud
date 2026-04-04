@@ -23,29 +23,86 @@ def slugify(location):
     text = text.encode("ascii", "ignore").decode("ascii")
     return text.lower().replace(" ", "_")
 
-def blob_exists(full_slug):
+def blob_exists(prefix):
     result = subprocess.run([
         "az", "storage", "blob", "list",
         "--account-name", "stmeathclouddev",
         "--container-name", "raw-data",
-        "--prefix", f"f1/{full_slug}/",
+        "--prefix", prefix,
         "--auth-mode", "login",
         "--query", "[0].name",
         "-o", "tsv"
     ], capture_output=True, text=True)
     return bool(result.stdout.strip())
 
-def get_blob_name(full_slug):
+def get_blob_name(prefix):
     result = subprocess.run([
         "az", "storage", "blob", "list",
         "--account-name", "stmeathclouddev",
         "--container-name", "raw-data",
-        "--prefix", f"f1/{full_slug}/",
+        "--prefix", prefix,
         "--auth-mode", "login",
         "--query", "[0].name",
         "-o", "tsv"
     ], capture_output=True, text=True)
     return result.stdout.strip()
+
+def ingest_session(s, full_slug, session_type, year):
+    blob_prefix = f"f1/{slugify(s['location'])}_{year}/{'sprint_' if session_type == 'Sprint' else 'race_'}"
+    label = f"{s['location']} {year} ({session_type})"
+
+    print(f"\n── {label} ──────────────────────────────────────")
+
+    # ETL
+    print(f"   Fetching from OpenF1 (session_key={s['session_key']})...")
+    result = subprocess.run([
+        sys.executable, f"{REPO_DIR}/scripts/f1_etl.py",
+        "--session-key", str(s["session_key"]),
+        "--race-name", full_slug,
+        "--session-type", session_type
+    ], capture_output=True, text=True, cwd=REPO_DIR)
+
+    if result.returncode != 0:
+        print(f"   ✗ ETL failed:\n{result.stderr.strip()}")
+        return False
+
+    print(f"   ✓ ETL complete")
+
+    # Wait for blob
+    print(f"   Waiting for blob...")
+    time.sleep(10)
+    blob_name = get_blob_name(blob_prefix)
+    if not blob_name:
+        print(f"   ✗ Blob not found after ETL, skipping flatten")
+        return False
+
+    # Download
+    tmp = f"/tmp/{full_slug}.json"
+    dl = subprocess.run([
+        "az", "storage", "blob", "download",
+        "--account-name", "stmeathclouddev",
+        "--container-name", "raw-data",
+        "--name", blob_name,
+        "--file", tmp,
+        "--auth-mode", "login"
+    ], capture_output=True, text=True)
+
+    if dl.returncode != 0:
+        print(f"   ✗ Download failed")
+        return False
+
+    # Flatten
+    print(f"   Flattening...")
+    flatten = subprocess.run([
+        sys.executable, f"{REPO_DIR}/scripts/f1_flatten.py", tmp
+    ], capture_output=True, text=True, cwd=REPO_DIR)
+
+    if flatten.returncode != 0:
+        print(f"   ✗ Flatten failed:\n{flatten.stderr.strip()}")
+        return False
+
+    print(f"   ✓ Done")
+    return True
 
 def main():
     now = datetime.now(timezone.utc)
@@ -54,97 +111,57 @@ def main():
     print(f"\n🏎  F1 Sync — {year}")
     print(f"   {now.strftime('%Y-%m-%d %H:%M')} UTC\n")
 
-    sessions = fetch("sessions", {"year": year, "session_type": "Race"})
-    races = [s for s in sessions if s["session_name"] == "Race"]
-    races.sort(key=lambda s: s["date_start"])
+    # Fetch both session types
+    race_sessions = fetch("sessions", {"year": year, "session_name": "Race"})
+    sprint_sessions = fetch("sessions", {"year": year, "session_name": "Sprint"})
+
+    all_sessions = (
+        [(s, "Race") for s in race_sessions] +
+        [(s, "Sprint") for s in sprint_sessions]
+    )
+    all_sessions.sort(key=lambda x: x[0]["date_start"])
 
     completed = [
-        s for s in races
+        (s, t) for s, t in all_sessions
         if datetime.fromisoformat(s["date_end"]) + timedelta(minutes=POST_RACE_BUFFER_MINUTES) < now
     ]
 
-    print(f"   {len(completed)} completed race(s) found\n")
+    print(f"   {len(completed)} completed session(s) found\n")
 
     missing = []
-    for s in completed:
+    for s, session_type in completed:
         slug = slugify(s["location"])
-        full_slug = f"{slug}_{year}"
-        if not blob_exists(full_slug):
-            missing.append((s, full_slug))
+        slug_suffix = "_sprint" if session_type == "Sprint" else ""
+        full_slug = f"{slug}_{year}{slug_suffix}"
+        blob_prefix = f"f1/{slug}_{year}/{'sprint_' if session_type == 'Sprint' else 'race_'}"
+
+        if not blob_exists(blob_prefix):
+            missing.append((s, full_slug, session_type))
 
     if not missing:
-        print("   ✓ All races already ingested. Nothing to do.\n")
+        print("   ✓ All sessions already ingested. Nothing to do.\n")
         sys.exit(0)
 
-    print(f"   {len(missing)} race(s) need ingesting:\n")
-    for s, full_slug in missing:
-        print(f"   • {s['location']} ({full_slug})")
+    print(f"   {len(missing)} session(s) need ingesting:\n")
+    for s, full_slug, session_type in missing:
+        print(f"   • {s['location']} {year} ({session_type})")
 
     print()
 
     ingested = []
     failed = []
 
-    for i, (s, full_slug) in enumerate(missing, 1):
-        print(f"── [{i}/{len(missing)}] {s['location']} ──────────────────────────")
-
-        # ETL
-        print(f"   Fetching from OpenF1 (session_key={s['session_key']})...")
-        result = subprocess.run([
-            sys.executable, f"{REPO_DIR}/scripts/f1_etl.py",
-            "--session-key", str(s["session_key"]),
-            "--race-name", full_slug
-        ], capture_output=True, text=True, cwd=REPO_DIR)
-
-        if result.returncode != 0:
-            print(f"   ✗ ETL failed:\n{result.stderr.strip()}")
+    for i, (s, full_slug, session_type) in enumerate(missing, 1):
+        year_str = s["date_start"][:4]
+        success = ingest_session(s, full_slug, session_type, year_str)
+        if success:
+            ingested.append(full_slug)
+        else:
             failed.append(full_slug)
-            continue
-
-        print(f"   ✓ ETL complete")
-
-        # Wait for blob
-        print(f"   Waiting for blob...")
-        time.sleep(10)
-        blob_name = get_blob_name(full_slug)
-        if not blob_name:
-            print(f"   ✗ Blob not found after ETL, skipping flatten")
-            failed.append(full_slug)
-            continue
-
-        # Download
-        tmp = f"/tmp/{full_slug}.json"
-        dl = subprocess.run([
-            "az", "storage", "blob", "download",
-            "--account-name", "stmeathclouddev",
-            "--container-name", "raw-data",
-            "--name", blob_name,
-            "--file", tmp,
-            "--auth-mode", "login"
-        ], capture_output=True, text=True)
-
-        if dl.returncode != 0:
-            print(f"   ✗ Download failed")
-            failed.append(full_slug)
-            continue
-
-        # Flatten
-        print(f"   Flattening...")
-        flatten = subprocess.run([
-            sys.executable, f"{REPO_DIR}/scripts/f1_flatten.py", tmp
-        ], capture_output=True, text=True, cwd=REPO_DIR)
-
-        if flatten.returncode != 0:
-            print(f"   ✗ Flatten failed:\n{flatten.stderr.strip()}")
-            failed.append(full_slug)
-            continue
-
-        print(f"   ✓ Done\n")
-        ingested.append(full_slug)
         time.sleep(5)
 
     # Summary
-    print("══════════════════════════════════════════")
+    print("\n══════════════════════════════════════════")
     print(f"   ✓ Ingested : {len(ingested)}")
     if failed:
         print(f"   ✗ Failed   : {len(failed)}  ({', '.join(failed)})")
