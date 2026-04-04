@@ -57,9 +57,8 @@ def main():
     for s, session_type in all_sessions:
         slug = slugify(s["location"])
         year = s["date_start"][:4]
-        slug_suffix = "_sprint" if session_type == "Sprint" else ""
-        full_slug = f"{slug}_{year}{slug_suffix}"
-        blob_prefix = f"f1/{slug}_{year}/{'sprint_' if session_type == 'Sprint' else 'race_'}"
+        base_slug = f"{slug}_{year}"
+        blob_prefix = f"f1/{base_slug}/{'sprint_' if session_type == 'Sprint' else 'race_'}"
 
         date_end = datetime.fromisoformat(s["date_end"])
         ingest_after = date_end + timedelta(minutes=POST_RACE_BUFFER_MINUTES)
@@ -74,7 +73,7 @@ def main():
                 status = "already ingested"
             else:
                 status = ">>> NEEDS INGEST <<<"
-                to_ingest.append((s, full_slug, session_type))
+                to_ingest.append((s, base_slug, session_type))
 
         print(f"{label:<35} {s['date_end']:<30} {status}")
 

@@ -47,8 +47,9 @@ def get_blob_name(prefix):
     ], capture_output=True, text=True)
     return result.stdout.strip()
 
-def ingest_session(s, full_slug, session_type, year):
-    blob_prefix = f"f1/{slugify(s['location'])}_{year}/{'sprint_' if session_type == 'Sprint' else 'race_'}"
+def ingest_session(s, base_slug, session_type, year):
+    blob_prefix = f"f1/{base_slug}/{'sprint_' if session_type == 'Sprint' else 'race_'}"
+    full_slug = base_slug  # ETL always uses base slug; session-type flag handles file prefix
     label = f"{s['location']} {year} ({session_type})"
 
     print(f"\n── {label} ──────────────────────────────────────")
@@ -131,12 +132,11 @@ def main():
     missing = []
     for s, session_type in completed:
         slug = slugify(s["location"])
-        slug_suffix = "_sprint" if session_type == "Sprint" else ""
-        full_slug = f"{slug}_{year}{slug_suffix}"
-        blob_prefix = f"f1/{slug}_{year}/{'sprint_' if session_type == 'Sprint' else 'race_'}"
+        base_slug = f"{slug}_{year}"
+        blob_prefix = f"f1/{base_slug}/{'sprint_' if session_type == 'Sprint' else 'race_'}"
 
         if not blob_exists(blob_prefix):
-            missing.append((s, full_slug, session_type))
+            missing.append((s, base_slug, session_type))
 
     if not missing:
         print("   ✓ All sessions already ingested. Nothing to do.\n")

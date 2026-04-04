@@ -152,9 +152,9 @@ def update_race_index(summary, index_path="static/f1/index.json"):
     else:
         index = []
 
-    session_type = summary.get("session_type", "Race")
     slug_suffix = "_sprint" if session_type == "Sprint" else ""
     slug = f"{summary['race'].lower().replace(' ', '_')}_{summary['year']}{slug_suffix}"
+    file_path = f"{summary['race'].lower().replace(' ', '_')}_{summary['year']}/{'sprint_summary' if session_type == 'Sprint' else 'summary'}.json"
 
     entry = {
         "race": summary["race"],
@@ -163,6 +163,7 @@ def update_race_index(summary, index_path="static/f1/index.json"):
         "date": summary["date"],
         "session_type": session_type,
         "slug": slug,
+        "file_path": file_path,
         "winner": summary["results"][0]["full_name"] if summary["results"] else "Unknown",
         "winner_team": summary["results"][0]["team"] if summary["results"] else "Unknown",
         "fastest_lap": summary["fastest_lap"]["lap_duration_formatted"] if summary["fastest_lap"] else None,
@@ -230,10 +231,11 @@ def main():
         return text.lower().replace(' ', '_')
 
     slug_suffix = "_sprint" if session_type == "Sprint" else ""
-    race_slug = f"{slugify(summary['race'])}_{summary['year']}{slug_suffix}"
+    race_slug = f"{slugify(summary['race'])}_{summary['year']}"
     out_dir = f"static/f1/{race_slug}"
     os.makedirs(out_dir, exist_ok=True)
-    out_path = f"{out_dir}/summary.json"
+    out_filename = "sprint_summary.json" if session_type == "Sprint" else "summary.json"
+    out_path = f"{out_dir}/{out_filename}"
     with open(out_path, "w") as f:
         json.dump(summary, f, indent=2)
 
