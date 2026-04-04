@@ -152,6 +152,7 @@ def update_race_index(summary, index_path="static/f1/index.json"):
     else:
         index = []
 
+    session_type = summary.get("session_type", "Race")
     slug_suffix = "_sprint" if session_type == "Sprint" else ""
     slug = f"{summary['race'].lower().replace(' ', '_')}_{summary['year']}{slug_suffix}"
     file_path = f"{summary['race'].lower().replace(' ', '_')}_{summary['year']}/{'sprint_summary' if session_type == 'Sprint' else 'summary'}.json"
