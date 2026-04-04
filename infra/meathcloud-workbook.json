@@ -1,0 +1,159 @@
+{
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 1,
+      "content": {
+        "json": "# meath.cloud — Infrastructure Monitor\n---"
+      },
+      "name": "title"
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "parameters": [
+          {
+            "id": "timerange",
+            "version": "KqlParameterItem/1.0",
+            "name": "TimeRange",
+            "type": 4,
+            "value": {
+              "durationMs": 604800000
+            },
+            "label": "Time Range",
+            "typeSettings": {
+              "selectableValues": [
+                { "durationMs": 3600000,   "text": "Last 1 hour" },
+                { "durationMs": 86400000,  "text": "Last 24 hours" },
+                { "durationMs": 604800000, "text": "Last 7 days" },
+                { "durationMs": 2592000000,"text": "Last 30 days" }
+              ]
+            }
+          }
+        ]
+      },
+      "name": "parameters"
+    },
+
+    {
+      "type": 1,
+      "content": {
+        "json": "## Blob Storage — stmeathclouddev"
+      },
+      "name": "section-blob"
+    },
+
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "AzureMetrics\n| where ResourceProvider == 'MICROSOFT.STORAGE'\n| where MetricName == 'Transactions'\n| where TimeGenerated {TimeRange}\n| summarize TotalTransactions = sum(Total) by bin(TimeGenerated, 1h)\n| order by TimeGenerated asc",
+        "size": 0,
+        "title": "Blob Transactions Over Time",
+        "timeContextFromParameter": "TimeRange",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "timechart"
+      },
+      "name": "blob-transactions"
+    },
+
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "StorageBlobLogs\n| where TimeGenerated {TimeRange}\n| where OperationName in ('PutBlob', 'GetBlob', 'DeleteBlob', 'ListBlobs')\n| summarize Count = count() by OperationName\n| order by Count desc",
+        "size": 3,
+        "title": "Operations Breakdown",
+        "timeContextFromParameter": "TimeRange",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "piechart"
+      },
+      "name": "blob-operations"
+    },
+
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "StorageBlobLogs\n| where TimeGenerated {TimeRange}\n| where StatusCode >= 400\n| summarize Errors = count() by StatusCode, OperationName, bin(TimeGenerated, 1h)\n| order by TimeGenerated desc",
+        "size": 1,
+        "title": "Errors (4xx / 5xx)",
+        "timeContextFromParameter": "TimeRange",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "table",
+        "gridSettings": {
+          "sortBy": [{ "itemKey": "TimeGenerated", "sortOrder": 2 }]
+        }
+      },
+      "name": "blob-errors"
+    },
+
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "StorageBlobLogs\n| where TimeGenerated {TimeRange}\n| where OperationName == 'PutBlob'\n| extend BlobPath = tostring(split(Uri, '/')[4])\n| project TimeGenerated, BlobPath, CallerIpAddress, DurationMs\n| order by TimeGenerated desc\n| take 20",
+        "size": 1,
+        "title": "Recent Blob Writes (Pipeline Activity)",
+        "timeContextFromParameter": "TimeRange",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "table"
+      },
+      "name": "blob-writes"
+    },
+
+    {
+      "type": 1,
+      "content": {
+        "json": "## Cost Spend — rg-data-engineering"
+      },
+      "name": "section-cost"
+    },
+
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "",
+        "size": 3,
+        "title": "Cost by Resource (Last 30 Days)",
+        "queryType": 8,
+        "resourceType": "microsoft.costmanagement/query",
+        "crossComponentResources": [
+          "/subscriptions/e64020ae-80db-40fb-b774-3fbafdcf48a0/resourceGroups/rg-data-engineering"
+        ],
+        "visualization": "barchart",
+        "chartSettings": {
+          "xAxis": "ResourceGroupName",
+          "yAxis": ["PreTaxCost"],
+          "showLegend": true
+        }
+      },
+      "name": "cost-by-resource"
+    },
+
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "",
+        "size": 3,
+        "title": "Daily Spend Trend (Last 30 Days)",
+        "queryType": 8,
+        "resourceType": "microsoft.costmanagement/query",
+        "crossComponentResources": [
+          "/subscriptions/e64020ae-80db-40fb-b774-3fbafdcf48a0/resourceGroups/rg-data-engineering"
+        ],
+        "visualization": "timechart"
+      },
+      "name": "cost-trend"
+    }
+  ],
+  "styleSettings": {},
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}
