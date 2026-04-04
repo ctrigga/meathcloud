@@ -238,5 +238,25 @@
     "winner": "George RUSSELL",
     "winner_team": "Mercedes",
     "fastest_lap": "1:22.091"
+  },
+  {
+    "race": "Shanghai",
+    "year": "2026",
+    "circuit": "Shanghai",
+    "date": "2026-03-15",
+    "slug": "shanghai_2026",
+    "winner": "Kimi ANTONELLI",
+    "winner_team": "Mercedes",
+    "fastest_lap": "1:35.275"
+  },
+  {
+    "race": "Suzuka",
+    "year": "2026",
+    "circuit": "Suzuka",
+    "date": "2026-03-29",
+    "slug": "suzuka_2026",
+    "winner": "Kimi ANTONELLI",
+    "winner_team": "Mercedes",
+    "fastest_lap": "1:32.432"
   }
 ]
