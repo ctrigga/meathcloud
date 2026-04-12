@@ -322,5 +322,17 @@
     "winner": "Kimi ANTONELLI",
     "winner_team": "Mercedes",
     "fastest_lap": "1:32.432"
+  },
+  {
+    "race": "Sakhir",
+    "year": "2026",
+    "circuit": "Sakhir",
+    "date": "2026-04-12",
+    "session_type": "Race",
+    "slug": "sakhir_2026",
+    "file_path": "sakhir_2026/summary.json",
+    "winner": "Lando NORRIS",
+    "winner_team": "McLaren",
+    "fastest_lap": null
   }
 ]
