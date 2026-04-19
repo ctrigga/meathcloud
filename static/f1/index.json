@@ -334,5 +334,17 @@
     "winner": "Lando NORRIS",
     "winner_team": "McLaren",
     "fastest_lap": null
+  },
+  {
+    "race": "Jeddah",
+    "year": "2026",
+    "circuit": "Jeddah",
+    "date": "2026-04-19",
+    "session_type": "Race",
+    "slug": "jeddah_2026",
+    "file_path": "jeddah_2026/summary.json",
+    "winner": "Lando NORRIS",
+    "winner_team": "McLaren",
+    "fastest_lap": null
   }
 ]
