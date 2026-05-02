@@ -346,5 +346,17 @@
     "winner": "Lando NORRIS",
     "winner_team": "McLaren",
     "fastest_lap": null
+  },
+  {
+    "race": "Miami Gardens",
+    "year": "2026",
+    "circuit": "Miami",
+    "date": "2026-05-02",
+    "session_type": "Sprint",
+    "slug": "miami_gardens_2026_sprint",
+    "file_path": "miami_gardens_2026/sprint_summary.json",
+    "winner": "Lando NORRIS",
+    "winner_team": "McLaren",
+    "fastest_lap": "1:31.885"
   }
 ]
