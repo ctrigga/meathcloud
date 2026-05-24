@@ -382,5 +382,17 @@
     "winner": "George RUSSELL",
     "winner_team": "Mercedes",
     "fastest_lap": "1:14.380"
+  },
+  {
+    "race": "Montr\u00e9al",
+    "year": "2026",
+    "circuit": "Montreal",
+    "date": "2026-05-24",
+    "session_type": "Race",
+    "slug": "montr\u00e9al_2026",
+    "file_path": "montr\u00e9al_2026/summary.json",
+    "winner": "Kimi ANTONELLI",
+    "winner_team": "Mercedes",
+    "fastest_lap": "1:14.210"
   }
 ]
