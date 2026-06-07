@@ -394,5 +394,17 @@
     "winner": "Kimi ANTONELLI",
     "winner_team": "Mercedes",
     "fastest_lap": "1:14.210"
+  },
+  {
+    "race": "Monte Carlo",
+    "year": "2026",
+    "circuit": "Monte Carlo",
+    "date": "2026-06-07",
+    "session_type": "Race",
+    "slug": "monte_carlo_2026",
+    "file_path": "monte_carlo_2026/summary.json",
+    "winner": "Kimi ANTONELLI",
+    "winner_team": "Mercedes",
+    "fastest_lap": "1:13.481"
   }
 ]
