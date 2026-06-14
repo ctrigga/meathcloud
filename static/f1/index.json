@@ -406,5 +406,17 @@
     "winner": "Kimi ANTONELLI",
     "winner_team": "Mercedes",
     "fastest_lap": "1:13.481"
+  },
+  {
+    "race": "Barcelona",
+    "year": "2026",
+    "circuit": "Catalunya",
+    "date": "2026-06-14",
+    "session_type": "Race",
+    "slug": "barcelona_2026",
+    "file_path": "barcelona_2026/summary.json",
+    "winner": "Lewis HAMILTON",
+    "winner_team": "Ferrari",
+    "fastest_lap": "1:20.122"
   }
 ]
