@@ -418,5 +418,17 @@
     "winner": "Lewis HAMILTON",
     "winner_team": "Ferrari",
     "fastest_lap": "1:20.122"
+  },
+  {
+    "race": "Spielberg",
+    "year": "2026",
+    "circuit": "Spielberg",
+    "date": "2026-06-28",
+    "session_type": "Race",
+    "slug": "spielberg_2026",
+    "file_path": "spielberg_2026/summary.json",
+    "winner": "George RUSSELL",
+    "winner_team": "Mercedes",
+    "fastest_lap": "1:10.374"
   }
 ]
